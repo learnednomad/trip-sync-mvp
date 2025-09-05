@@ -1,0 +1,4346 @@
+╭────────────────────────────────────────────────────────────╮
+│ ✻ Welcome to Claude Code!                                  │
+│                                                            │
+│   /help for help, /status for your current setup           │
+│                                                            │
+│   cwd: /Users/saninabil/WebstormProjects/sabron-trip-sync  │
+╰────────────────────────────────────────────────────────────╯
+
+> /BMad:agents:architect is running…
+
+⏺ I'll now activate as Winston the Architect. Let me first load the project configuration.
+
+⏺ Read(.bmad-core/core-config.yaml)
+  ⎿  Read 23 lines (ctrl+r to expand)
+
+⏺ 🏗️ Hello! I'm Winston, your Holistic System Architect & Full-Stack Technical Leader.
+
+  I specialize in comprehensive system design, architecture documents, technology selection, API design, and infrastructure planning. My approach is pragmatic and user-centric, bridging frontend, backend,
+  infrastructure, and everything in between.
+
+  Available Commands:
+
+  1. *help - Show this list of commands
+  2. *create-backend-architecture - Create backend architecture documentation
+  3. *create-brownfield-architecture - Create brownfield system architecture
+  4. *create-front-end-architecture - Create frontend architecture documentation
+  5. *create-full-stack-architecture - Create full-stack architecture documentation
+  6. *doc-out - Output full document to current destination file
+  7. *document-project - Execute comprehensive project documentation
+  8. *execute-checklist {checklist} - Run architect checklist (default: architect-checklist)
+  9. *research {topic} - Execute deep research on a technical topic
+  10. *shard-prd - Shard the architecture document into manageable sections
+  11. *yolo - Toggle Yolo Mode (rapid prototyping mode)
+  12. *exit - Exit architect mode
+
+  How can I assist you with your system architecture needs today? You can type a command number from above or describe what architectural help you need.
+
+> 3
+
+⏺ I'll create a frontend architecture document for your project. Let me execute the create-front-end-architecture command.
+
+⏺ Read(.bmad-core/tasks/create-doc.md)
+  ⎿  Read 104 lines (ctrl+r to expand)
+
+⏺ Now let me load the frontend architecture template:
+
+⏺ Read(.bmad-core/templates/front-end-architecture-tmpl.yaml)
+  ⎿  Read 220 lines (ctrl+r to expand)
+
+⏺ Now I need to check for the elicitation methods file:
+
+⏺ Read(.bmad-core/data/elicitation-methods.md)
+  ⎿  Read 157 lines (ctrl+r to expand)
+
+⏺ Perfect! Now I'll begin the interactive frontend architecture document creation process. Let me start by checking for any existing documents that might inform our architecture:
+
+⏺ Search(pattern: "docs/**/*.md")
+  ⎿  Found 2 files (ctrl+r to expand)
+
+⏺ Let me quickly check for the main architecture document and PRD:
+
+⏺ Read(docs/prd.md)
+  ⎿  Read 50 lines (ctrl+r to expand)
+
+⏺ Let me also check the frontend spec:
+
+⏺ Read(docs/front-end-spec.md)
+  ⎿  Read 100 lines (ctrl+r to expand)
+
+⏺ Excellent! I can see this is a React Native project with Expo. Now let me begin the interactive frontend architecture document creation process.
+
+  🏗️ Creating Frontend Architecture Document
+
+  I'll now start the interactive document creation process following the YAML template. First, let me set up the workflow:
+
+  Output File: docs/ui-architecture.mdMode: Interactive (with elicitation)
+
+  ---
+  Section 1: Template and Framework Selection
+
+  Based on my analysis of the project:
+
+  Framework Analysis
+
+  I've reviewed the PRD and found that Trip Sync v2 is already using an established tech stack:
+
+  - Framework: React Native 0.79.4 with React 19.0.0
+  - Development Platform: Expo SDK 53
+  - Language: TypeScript 5.8.3
+  - State Management: Zustand 5.0.5 + TanStack Query 5.52.1
+  - UI Framework: NativeWind 4.1.21 (Tailwind for React Native)
+  - Navigation: Expo Router 5.1.0 (File-based routing)
+  - Storage: React Native MMKV 3.1.0
+  - Backend: Supabase
+
+  This is a React Native mobile application using Expo as the development platform, which provides:
+  - Managed workflow with pre-configured build tools
+  - File-based routing via Expo Router
+  - NativeWind for Tailwind-style styling in React Native
+  - Pre-existing folder structure and patterns
+
+  Change Log
+
+  | Date       | Version | Description                            | Author              |
+  |------------|---------|----------------------------------------|---------------------|
+  | 2025-01-02 | 1.0     | Initial Frontend Architecture Document | Winston (Architect) |
+
+  ---
+  Section 2: Frontend Tech Stack
+
+  Let me now draft the technology stack table based on the existing project setup:
+
+  Technology Stack Table
+
+  | Category          | Technology                          | Version        | Purpose                               | Rationale                                                                        |
+  |-------------------|-------------------------------------|----------------|---------------------------------------|----------------------------------------------------------------------------------|
+  | Framework         | React Native                        | 0.79.4         | Cross-platform mobile development     | Industry standard for mobile apps with code reuse between iOS/Android            |
+  | UI Library        | React                               | 19.0.0         | Component-based UI development        | Latest React version with improved performance and concurrent features           |
+  | State Management  | Zustand + TanStack Query            | 5.0.5 / 5.52.1 | Local state + Server state management | Zustand for simple local state, TanStack Query for server state caching and sync |
+  | Routing           | Expo Router                         | 5.1.0          | File-based navigation                 | Simplifies navigation with automatic route generation from file structure        |
+  | Build Tool        | Expo SDK                            | 53             | Development and build platform        | Managed workflow reduces configuration complexity, provides OTA updates          |
+  | Styling           | NativeWind                          | 4.1.21         | Tailwind CSS for React Native         | Utility-first styling with excellent DX and consistent design system             |
+  | Testing           | Jest + React Native Testing Library | Built-in       | Unit and integration testing          | Standard testing stack for React Native applications                             |
+  | Component Library | Custom + React Native Elements      | N/A            | UI component collection               | Building custom components with RN Elements as supplement                        |
+  | Form Handling     | React Hook Form                     | TBD            | Form state management                 | Performant forms with built-in validation                                        |
+  | Animation         | React Native Reanimated             | 4.0.0          | Smooth animations                     | High-performance animation library for React Native                              |
+  | Dev Tools         | Expo DevTools + Flipper             | Latest         | Development and debugging             | Comprehensive debugging and development experience                               |
+
+  Rationale for Technology Choices
+
+  Key Trade-offs Made:
+  - Expo Managed Workflow vs Bare: Chose managed for faster development and OTA updates, accepting some native module limitations
+  - Zustand vs Redux: Opted for simplicity and smaller bundle size over more complex state patterns
+  - NativeWind vs Styled Components: Prioritized utility-first approach for rapid development and design consistency
+  - File-based Routing vs Traditional: Embraced modern patterns for better DX and automatic code splitting
+
+  Assumptions:
+  - Team is familiar with React ecosystem
+  - Offline-first requirements justify TanStack Query's caching capabilities
+  - Design system can be effectively implemented with utility classes
+
+  Areas Needing Validation:
+  - Form library selection (React Hook Form suggested but not confirmed)
+  - Specific animation requirements that might need native modules
+  - Performance requirements for complex list rendering
+
+  ---
+  This section requires your input for elicitation.
+
+  Select an option (1-9) to proceed:
+
+  1. Proceed to next section - Accept the tech stack as drafted
+  2. Expand or Contract for Audience - Adjust detail level for specific team members
+  3. Explain Reasoning (CoT Step-by-Step) - Deep dive into technology selection logic
+  4. Critique and Refine - Review for potential improvements or alternatives
+  5. Analyze Logical Flow and Dependencies - Examine technology interdependencies
+  6. Identify Potential Risks and Unforeseen Issues - Explore technology risks
+  7. Challenge from Critical Perspective - Apply YAGNI principles to stack choices
+  8. Tree of Thoughts Deep Dive - Explore alternative technology paths
+  9. Agile Team Perspective Shift - View stack from different team roles
+
+  Select 1-9 or just type your question/feedback:
+
+> 4,8,9
+  ⎿  Interrupted by user
+
+> 4,5,6,7,8,9
+
+⏺ I'll execute multiple elicitation methods for the Frontend Tech Stack section. Let me go through each one:
+
+  4. Critique and Refine
+
+  Critical Review of Tech Stack
+
+  Identified Weaknesses:
+
+  1. Form Handling Gap: React Hook Form is marked "TBD" - this is critical for a travel app with extensive forms
+    - Refinement: Given React Native constraints, recommend React Hook Form 7.x for performance
+    - Alternative: Formik if team prefers, but RHF has better React Native performance
+  2. Testing Stack Incomplete: Only mentions Jest but missing:
+    - E2E Testing: Add Maestro (already in .maestro/ folder) for mobile E2E tests
+    - Component Testing: Specify @testing-library/react-native 12.x
+    - API Mocking: Add MSW (Mock Service Worker) for API testing
+  3. Animation Library Version: Reanimated 4.0.0 might be too new
+    - Refinement: Consider Reanimated 3.x for stability with Expo SDK 53
+  4. Missing Security Layer: No mention of encryption/security libraries
+    - Add: expo-crypto for encryption, expo-local-authentication for biometrics
+  5. Component Library Vague: "Custom + React Native Elements" needs specificity
+    - Refinement: Define React Native Elements 4.x as base, custom components in /components
+
+  Refined Tech Stack Additions:
+  | Category    | Technology                    | Version | Purpose                 | Rationale                               |
+  |-------------|-------------------------------|---------|-------------------------|-----------------------------------------|
+  | Forms       | React Hook Form               | 7.54.x  | Form validation & state | Superior React Native performance       |
+  | E2E Testing | Maestro                       | Latest  | Mobile E2E testing      | Already configured, native mobile focus |
+  | Security    | expo-crypto + expo-local-auth | SDK 53  | Encryption & biometrics | Security requirements from PRD          |
+
+  ---
+  5. Analyze Logical Flow and Dependencies
+
+  Dependency Analysis
+
+  Critical Path Dependencies:
+  React Native 0.79.4
+  ├── React 19.0.0 (core dependency)
+  ├── Expo SDK 53 (platform layer)
+  │   ├── Expo Router 5.1.0 (requires Expo)
+  │   ├── expo-crypto (security)
+  │   └── expo-local-authentication (biometrics)
+  ├── NativeWind 4.1.21
+  │   └── Tailwind CSS 3.x (dev dependency)
+  ├── State Management Layer
+  │   ├── Zustand 5.0.5 (standalone)
+  │   └── TanStack Query 5.52.1
+  │       └── Requires React 18+ ✓
+  └── React Native MMKV 3.1.0 (storage)
+
+  Potential Conflicts:
+  1. React 19.0.0 Compatibility: Very new, ensure all libraries support it
+    - TanStack Query ✓ (supports React 19)
+    - React Hook Form ✓ (supports React 19)
+    - NativeWind ⚠️ (verify compatibility)
+  2. Expo SDK 53 Constraints:
+    - Limits native module choices
+    - Must use Expo-compatible versions of libraries
+
+  Sequencing Requirements:
+  1. Core platform (RN + Expo) must be stable first
+  2. Navigation (Expo Router) relies on Expo configuration
+  3. State management can be added incrementally
+  4. UI libraries (NativeWind) can be progressively adopted
+
+  ---
+  6. Identify Potential Risks and Unforeseen Issues
+
+  Technology Risk Assessment
+
+  High Risk Issues:
+
+  1. React 19.0.0 Bleeding Edge Risk 🚨
+    - Issue: Too new, limited community solutions
+    - Impact: Debugging difficulties, lack of Stack Overflow answers
+    - Mitigation: Consider downgrading to React 18.3.x for stability
+  2. Offline-First Complexity ⚠️
+    - Issue: Zustand + TanStack Query + MMKV synchronization
+    - Unforeseen: Conflict resolution between offline edits
+    - Mitigation: Implement CRDT-based sync or last-write-wins with user choice
+  3. Expo Ejection Risk ⚠️
+    - Issue: May need native modules Expo doesn't support
+    - Examples: Advanced camera features, custom Bluetooth protocols
+    - Mitigation: Plan ejection strategy, use Expo development builds
+  4. NativeWind Performance ⚠️
+    - Issue: Runtime style computation overhead
+    - Impact: Slower on low-end Android devices
+    - Mitigation: Profile early, consider StyleSheet for hot paths
+  5. Multi-Currency Calculation Precision 🚨
+    - Issue: JavaScript floating-point errors in financial calculations
+    - Impact: Incorrect expense splitting
+    - Mitigation: Use decimal.js or big.js for money math
+
+  Edge Cases Not Considered:
+  - RTL language support with NativeWind
+  - Accessibility with custom components
+  - Deep linking with Expo Router in production
+  - Background sync while app is killed
+
+  ---
+  7. Challenge from Critical Perspective (YAGNI)
+
+  Aggressive Scope Reduction
+
+  Over-Engineering Detected:
+
+  1. TanStack Query - YAGNI?
+    - Challenge: For MVP, simple fetch + Zustand might suffice
+    - Counter: Offline sync complexity justifies it
+    - Verdict: Keep, but start with basic features only
+  2. React Native Reanimated - YAGNI! ❌
+    - Challenge: Native Animated API handles 90% of needs
+    - Verdict: REMOVE until specific animation needs arise
+    - Savings: Smaller bundle, simpler debugging
+  3. Component Library (RN Elements) - YAGNI?
+    - Challenge: Building 10 custom components faster than learning library
+    - Verdict: REMOVE, build custom components as needed
+    - Benefit: Full control, no dependency updates
+  4. Flipper - YAGNI! ❌
+    - Challenge: Expo DevTools sufficient for MVP
+    - Verdict: REMOVE, adds complexity without MVP value
+  5. Form Library - Partial YAGNI
+    - Challenge: Only need for complex multi-step forms
+    - Verdict: Start with controlled components, add RHF when needed
+
+  Minimalist Tech Stack:
+  Essential Only:
+  - React Native + Expo (core)
+  - TypeScript (type safety)
+  - Zustand (state)
+  - TanStack Query (sync)
+  - NativeWind (styling)
+  - Expo Router (navigation)
+  - MMKV (storage)
+
+  Add When Needed:
+  - React Hook Form (complex forms)
+  - Reanimated (advanced animations)
+  - Component libraries
+
+  ---
+  8. Tree of Thoughts Deep Dive
+
+  Alternative Technology Paths
+
+  Path Analysis:
+
+  Root Decision: Mobile Development Approach
+  ├── Path A: React Native + Expo (CURRENT)
+  │   ├── Pros: Fast iteration, OTA updates, managed workflow
+  │   ├── Cons: Native limitations, bundle size
+  │   └── Confidence: "likely" ✓
+  │
+  ├── Path B: React Native Bare Workflow
+  │   ├── Pros: Full native access, smaller bundle
+  │   ├── Cons: Complex setup, no OTA
+  │   └── Confidence: "likely"
+  │
+  ├── Path C: Flutter Alternative
+  │   ├── Pros: Better performance, material design
+  │   ├── Cons: Team retraining, Dart language
+  │   └── Confidence: "impossible" ❌ (team knows React)
+  │
+  └── Path D: Native Development
+      ├── Pros: Best performance, platform features
+      ├── Cons: 2x development time, 2x maintenance
+      └── Confidence: "impossible" ❌ (resource constraints)
+
+  State Management Decision Tree:
+  ├── Path A: Zustand + TanStack Query (CURRENT)
+  │   ├── Complexity: Medium
+  │   ├── Offline: Excellent
+  │   └── Confidence: "sure" ✓✓
+  │
+  ├── Path B: Redux Toolkit + RTK Query
+  │   ├── Complexity: High
+  │   ├── Offline: Good
+  │   └── Confidence: "likely"
+  │
+  ├── Path C: MobX + Custom Sync
+  │   ├── Complexity: Medium-High
+  │   ├── Offline: Custom implementation
+  │   └── Confidence: "impossible" ❌
+  │
+  └── Path D: Jotai + SWR
+      ├── Complexity: Low-Medium
+      ├── Offline: Moderate
+      └── Confidence: "likely"
+
+  Optimal Path Determination:
+  - Current path (RN + Expo + Zustand + TanStack) rates highest for:
+    - Team expertise alignment
+    - Offline-first requirements
+    - Development velocity
+    - Maintenance burden
+
+  Alternative Worth Considering:
+  - If performance becomes critical: Migrate to bare workflow
+  - If state complexity grows: Add Zustand devtools or migrate to RTK
+
+  ---
+  9. Agile Team Perspective Shift
+
+  Multiple Team Member Views
+
+  🎯 Product Owner Perspective:
+  "This tech stack delivers user value quickly"
+  - ✅ Expo = Faster feature delivery via OTA updates
+  - ✅ NativeWind = Consistent design implementation
+  - ⚠️ Concern: React 19 stability affecting release timeline
+  - 💡 Request: Ensure offline-first actually works for users in airports/abroad
+
+  🏃 Scrum Master Perspective:
+  "How does this stack affect team velocity?"
+  - ✅ File-based routing = Less configuration meetings
+  - ✅ TypeScript = Fewer runtime bugs in sprint
+  - ⚠️ Risk: Learning curve for NativeWind might slow first sprint
+  - 💡 Suggestion: Spike on complex features early (offline sync)
+
+  👨‍💻 Developer Perspective:
+  "Can I actually build with this?"
+  - ✅ Zustand = Simple mental model, less boilerplate
+  - ✅ TanStack Query = No manual cache invalidation
+  - ❌ React 19 = Worried about stability, prefer 18.3.x
+  - ⚠️ NativeWind = Concerned about debugging style issues
+  - 💡 Want: Better testing setup definition (Maestro + Jest + MSW)
+
+  🔍 QA Engineer Perspective:
+  "How do I test this?"
+  - ❌ Missing: Clear E2E testing strategy
+  - ❌ Missing: API mocking approach
+  - ✅ Maestro exists but needs documentation
+  - 💡 Need: Test data management strategy for offline scenarios
+  - 💡 Need: Device testing matrix (iOS versions, Android API levels)
+
+  🎨 UI/UX Designer Perspective:
+  "Will my designs translate correctly?"
+  - ✅ NativeWind = Design tokens easily implemented
+  - ⚠️ Concern: Custom animations might need Reanimated
+  - ⚠️ Platform differences with Expo components
+  - 💡 Need: Component documentation and Storybook setup
+
+  ---
+  Synthesized Insights & Recommendations
+
+  Based on all elicitation methods, here are the key adjustments needed:
+
+  Critical Changes:
+
+  1. Downgrade to React 18.3.x - Team consensus on stability
+  2. Add Maestro + MSW to testing stack explicitly
+  3. Remove Reanimated until needed (YAGNI)
+  4. Add decimal.js for financial calculations
+  5. Document testing strategy explicitly
+
+  Updated Tech Stack Table:
+
+  | Category         | Technology                                     | Version        | Purpose                 | Rationale                    |
+  |------------------|------------------------------------------------|----------------|-------------------------|------------------------------|
+  | Framework        | React Native                                   | 0.79.4         | Cross-platform mobile   | Industry standard            |
+  | UI Library       | React                                          | 18.3.x         | Component UI            | Stability over bleeding edge |
+  | State Management | Zustand + TanStack Query                       | 5.0.5 / 5.52.1 | Local + Server state    | Simple + Powerful offline    |
+  | Routing          | Expo Router                                    | 5.1.0          | File-based navigation   | Reduced complexity           |
+  | Build Tool       | Expo SDK                                       | 53             | Dev platform            | Managed workflow benefits    |
+  | Styling          | NativeWind                                     | 4.1.21         | Utility-first CSS       | Rapid development            |
+  | Testing          | Jest + @testing-library/react-native + Maestro | Latest         | Full test coverage      | Unit + Integration + E2E     |
+  | API Mocking      | MSW                                            | 2.x            | Test isolation          | Consistent test data         |
+  | Forms            | React Hook Form                                | 7.54.x         | Form management         | Performance in RN            |
+  | Security         | expo-crypto + expo-local-auth                  | SDK 53         | Encryption & biometrics | PRD requirements             |
+  | Math             | decimal.js                                     | 10.x           | Financial calculations  | Precision for money          |
+
+  ---
+  After reviewing all perspectives, would you like to:
+
+  1. Proceed to next section - Accept the refined tech stack
+  2. Further refine specific technologies - Dive deeper into any concerns
+  3. Adjust based on team feedback - Modify based on specific role concerns
+  4. Document decisions for team - Create decision log
+
+  Select 1-4 or type your specific feedback:
+
+> use exa to ensure that they are up to date
+
+⏺ I'll use Exa to verify that all the technology versions in our tech stack are current and compatible.
+
+⏺ exa - web_search_exa (MCP)(query: "React Native 0.79.4 latest version 2025 compatibility Expo SDK 53", numResults: 5)
+  ⎿  {
+       "requestId": "90ac81399004fe81596ec4b3943ae8ba",
+       "autopromptString": "React Native 0.79.4 latest version 2025 compatibility Expo SDK 53",
+     … +137 lines (ctrl+r to expand)
+
+⏺ exa - web_search_exa (MCP)(query: "Zustand 5.0.5 TanStack Query 5.52 React 19 compatibility 2025", numResults: 5)
+  ⎿  {
+       "requestId": "66660b6d51364ddfaa3afb3a6c7d572e",
+       "autopromptString": "Zustand 5.0.5 TanStack Query 5.52 React 19 compatibility 2025",
+     … +101 lines (ctrl+r to expand)
+
+⏺ Let me search for more specific version information and compatibility details:
+
+⏺ exa - web_search_exa (MCP)(query: "NativeWind 4.1.23 React Native 0.79.4 compatibility Tailwind CSS React Native 2025", numResults: 5)
+  ⎿  {
+       "requestId": "104ea6ea0b96e3e2e16b43f569146b07",
+       "autopromptString": "NativeWind 4.1.23 React Native 0.79.4 compatibility Tailwind CSS React Native 2025",
+     … +138 lines (ctrl+r to expand)
+
+⏺ exa - web_search_exa (MCP)(query: "React Hook Form 7.54 React Native performance 2025 compatibility", numResults: 5)
+  ⎿  {
+       "requestId": "98dee0ee642c1cd48266c8fd8822a4dc",
+       "autopromptString": "React Hook Form 7.54 React Native performance 2025 compatibility",
+     … +142 lines (ctrl+r to expand)
+
+⏺ Let me track the validation progress:
+
+⏺ Version Verification & Updated Tech Stack
+
+  Based on my research using Exa, here are the key findings and updates:
+
+  Critical Version Updates Required
+
+  1. React Version Compatibility Issue ⚠️
+    - Finding: React 19.0.0 is included with React Native 0.79.4 BUT is still experimental
+    - Expo SDK 53 Status: Released April 2025, includes RN 0.79.4 with React 19
+    - Recommendation: Stay with React 19 as it's the default in Expo SDK 53
+  2. Zustand Compatibility ✅
+    - Current: Version 5.0.5 is compatible with React 19
+    - Note: Community has confirmed React 19 support
+  3. TanStack Query ✅
+    - Latest: Version 5.85.x (as of Jan 2025)
+    - Update Needed: From 5.52.1 → 5.85.x
+    - React 19 Support: Confirmed compatible
+  4. NativeWind ✅
+    - Current: 4.1.23 is the latest stable (v4.1 released Oct 2024)
+    - Features: Improved fast refresh, tvOS support, better animations
+    - Compatibility: Fully supports React Native 0.79.4
+  5. React Hook Form ✅
+    - Latest: Version 7.60.0 (as of Jan 2025)
+    - Update Needed: From 7.54.x → 7.60.0
+    - React Native Performance: Excellent, minimal re-renders
+
+  Final Updated Tech Stack Table
+
+  | Category         | Technology                                     | Version        | Purpose                   | Rationale                                   |
+  |------------------|------------------------------------------------|----------------|---------------------------|---------------------------------------------|
+  | Framework        | React Native                                   | 0.79.4         | Cross-platform mobile     | Latest stable with New Architecture default |
+  | UI Library       | React                                          | 19.0.0         | Component-based UI        | Bundled with RN 0.79.4 in Expo SDK 53       |
+  | State Management | Zustand + TanStack Query                       | 5.0.5 / 5.85.x | Local + Server state      | Updated TanStack Query for latest features  |
+  | Routing          | Expo Router                                    | 5.1.0          | File-based navigation     | Automatic route generation                  |
+  | Build Tool       | Expo SDK                                       | 53             | Development platform      | Latest with React 19 and New Architecture   |
+  | Styling          | NativeWind                                     | 4.1.23         | Tailwind for React Native | Latest v4.1 with fast refresh improvements  |
+  | Testing          | Jest + @testing-library/react-native + Maestro | Latest         | Full test coverage        | Unit + Integration + E2E                    |
+  | API Mocking      | MSW                                            | 2.x            | Test isolation            | Mock Service Worker for API testing         |
+  | Forms            | React Hook Form                                | 7.60.0         | Form management           | Latest version with RN optimizations        |
+  | Security         | expo-crypto + expo-local-auth                  | SDK 53         | Encryption & biometrics   | Built into Expo SDK 53                      |
+  | Math             | decimal.js                                     | 10.x           | Financial calculations    | Precision for currency calculations         |
+  | Storage          | React Native MMKV                              | 3.1.0          | High-performance storage  | Fastest key-value storage for RN            |
+  | Backend          | Supabase                                       | Latest         | BaaS platform             | Auth, DB, Realtime, Storage                 |
+
+  Key Findings & Recommendations
+
+  ✅ Version Alignment Confirmed:
+  - Expo SDK 53 (April 2025) bundles React Native 0.79.4 with React 19
+  - New Architecture is enabled by default in SDK 53
+  - All major libraries have been updated for compatibility
+
+  ⚠️ Important Considerations:
+  1. New Architecture Default: Projects will use the New Architecture by default - can opt-out if needed
+  2. Edge-to-Edge on Android: Now default in SDK 53, required for Android 16 (June 2025)
+  3. Package Exports: Metro 0.82 enables package.json exports by default (breaking change for some packages)
+
+  🎯 Action Items:
+  - Update TanStack Query to 5.85.x for latest features
+  - Update React Hook Form to 7.60.0 for performance improvements
+  - Ensure New Architecture compatibility for all custom native modules
+
+⏺ ---
+  The tech stack has been verified and updated with the latest compatible versions. Would you like to:
+
+  1. Proceed to next section - Continue with Project Structure
+  2. Review specific technology choices - Dive deeper into any technology
+  3. Adjust versions - Modify based on your team's preferences
+  4. Document migration notes - Add notes for updating existing dependencies
+
+  Select 1-4 or type your specific feedback:
+
+> 4
+
+⏺ Migration Notes for Dependency Updates
+
+  Let me create comprehensive migration notes for updating the existing dependencies:
+
+  Dependency Migration Guide
+
+  ---
+  Priority 1: Critical Updates (Do First)
+
+  1. TanStack Query: 5.52.1 → 5.85.x
+
+  Breaking Changes:
+  - None for basic usage
+  - Some TypeScript types have been refined
+
+  Migration Steps:
+  # Update package
+  npx expo install @tanstack/react-query@^5.85.0
+
+  # Update query client setup if using custom config
+
+  Code Changes Required:
+  // Before (if using old imports)
+  import { useQuery } from '@tanstack/react-query'
+
+  // After (same, but check for any deprecated options)
+  import { useQuery } from '@tanstack/react-query'
+
+  // Ensure your QueryClient config is compatible
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000, // Still valid
+        retry: 3, // Still valid
+        refetchOnWindowFocus: false, // Still valid
+      },
+    },
+  })
+
+  Testing Checklist:
+  - Verify all queries still fetch correctly
+  - Check offline persistence works
+  - Validate optimistic updates function
+  - Test error boundaries with failed queries
+
+  ---
+  Priority 2: Performance Improvements
+
+  2. React Hook Form: Not installed → 7.60.0
+
+  Installation:
+  npx expo install react-hook-form@^7.60.0
+
+  Initial Setup for React Native:
+  // components/forms/FormProvider.tsx
+  import { useForm, FormProvider, Controller } from 'react-hook-form'
+  import { TextInput } from 'react-native'
+
+  // Example controlled input component
+  export const ControlledInput = ({ name, control, rules, ...props }) => {
+    return (
+      <Controller
+        control={control}
+        name={name}
+        rules={rules}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            {...props}
+          />
+        )}
+      />
+    )
+  }
+
+  Migration from Uncontrolled Inputs:
+  // Before (uncontrolled)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  // After (with React Hook Form)
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  })
+
+  const onSubmit = (data) => {
+    console.log(data) // { email: '...', password: '...' }
+  }
+
+  ---
+  Priority 3: Development Experience
+
+  3. MSW (Mock Service Worker): Not installed → 2.x
+
+  Installation:
+  npm install --save-dev msw@^2.0.0
+
+  Setup for React Native:
+  // __tests__/mocks/server.ts
+  import { setupServer } from 'msw/native'
+  import { handlers } from './handlers'
+
+  export const server = setupServer(...handlers)
+
+  // __tests__/mocks/handlers.ts
+  import { http, HttpResponse } from 'msw'
+
+  export const handlers = [
+    http.get('*/api/trips', () => {
+      return HttpResponse.json([
+        { id: 1, name: 'Paris Trip' },
+        { id: 2, name: 'Tokyo Adventure' }
+      ])
+    }),
+  ]
+
+  // jest-setup.ts
+  import { server } from './__tests__/mocks/server'
+
+  beforeAll(() => server.listen())
+  afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
+
+  ---
+  Priority 4: Security & Math Libraries
+
+  4. decimal.js: Not installed → 10.x
+
+  Installation:
+  npm install decimal.js
+
+  Usage for Financial Calculations:
+  // utils/currency.ts
+  import Decimal from 'decimal.js'
+
+  export const calculateExpenseSplit = (
+    totalAmount: number,
+    numberOfPeople: number
+  ): string => {
+    // Use Decimal for precise division
+    const total = new Decimal(totalAmount)
+    const people = new Decimal(numberOfPeople)
+    const perPerson = total.dividedBy(people)
+
+    // Round to 2 decimal places for currency
+    return perPerson.toFixed(2)
+  }
+
+  // Example: Split $100.00 among 3 people
+  // Result: "33.33" (not 33.333333333333336)
+
+  ---
+  Environment & Configuration Updates
+
+  5. Package.json Updates
+
+  {
+    "dependencies": {
+      "@tanstack/react-query": "^5.85.0",
+      "react-hook-form": "^7.60.0",
+      "decimal.js": "^10.4.3",
+      "zustand": "5.0.5",
+      "nativewind": "^4.1.23",
+      "react-native-mmkv": "^3.1.0"
+    },
+    "devDependencies": {
+      "msw": "^2.0.0",
+      "@testing-library/react-native": "^12.8.0",
+      "maestro": "^1.38.0"
+    }
+  }
+
+  6. TypeScript Configuration
+
+  // types/forms.d.ts
+  import { Control, FieldValues } from 'react-hook-form'
+
+  declare global {
+    type FormControl<T extends FieldValues = FieldValues> = Control<T>
+  }
+
+  // types/decimal.d.ts
+  import { Decimal } from 'decimal.js'
+
+  declare global {
+    type Money = Decimal
+  }
+
+  ---
+  Testing Strategy After Updates
+
+  Smoke Test Checklist
+
+  # 1. Clear all caches
+  npx expo start --clear
+  rm -rf node_modules
+  npm install
+
+  # 2. Run type checking
+  npx tsc --noEmit
+
+  # 3. Run unit tests
+  npm test
+
+  # 4. Run E2E tests with Maestro
+  maestro test .maestro/
+
+  # 5. Build for both platforms
+  eas build --platform ios --profile preview
+  eas build --platform android --profile preview
+
+  Performance Validation
+
+  // __tests__/performance/forms.test.ts
+  import { renderHook } from '@testing-library/react-native'
+  import { useForm } from 'react-hook-form'
+
+  test('Form renders should be minimal', () => {
+    let renderCount = 0
+
+    const { result } = renderHook(() => {
+      renderCount++
+      return useForm()
+    })
+
+    // Initial render
+    expect(renderCount).toBe(1)
+
+    // Changing form values shouldn't cause re-renders
+    act(() => {
+      result.current.setValue('email', 'test@example.com')
+    })
+
+    expect(renderCount).toBe(1) // Still 1, no re-render
+  })
+
+  ---
+  Rollback Plan
+
+  If any updates cause issues:
+
+  # Create backup branch
+  git checkout -b pre-dependency-update-backup
+  git add .
+  git commit -m "Backup: Before dependency updates"
+
+  # If rollback needed
+  git checkout pre-dependency-update-backup
+  npm install
+  npx expo start --clear
+
+  Staged Migration Approach
+
+  Week 1:
+  - Update TanStack Query
+  - Test all API integrations
+
+  Week 2:
+  - Add React Hook Form to one form
+  - Validate performance improvements
+
+  Week 3:
+  - Install MSW and decimal.js
+  - Implement in new features only
+
+  Week 4:
+  - Migrate remaining forms to React Hook Form
+  - Full regression testing
+
+  ---
+  Common Issues & Solutions
+
+  Issue 1: Metro bundler errors after update
+
+  # Solution: Clear all caches
+  npx expo start --clear
+  cd ios && pod install
+  cd android && ./gradlew clean
+
+  Issue 2: TypeScript errors with new versions
+
+  # Update types
+  npm install --save-dev @types/react@latest
+  npm install --save-dev @types/react-native@latest
+
+  Issue 3: React Hook Form not working with custom components
+
+  // Ensure you forward refs properly
+  const CustomInput = React.forwardRef((props, ref) => {
+    return <TextInput ref={ref} {...props} />
+  })
+
+  ---
+  Migration notes have been documented. Would you like to:
+
+  1. Proceed to next section - Continue with Project Structure
+  2. Create migration scripts - Automate the update process
+  3. Add team communication template - Draft update announcement
+  4. Review specific migration concerns - Address particular worries
+
+  Select 1-4 or type your feedback:
+
+> i want pnpm
+
+⏺ Updated Migration Guide for PNPM
+
+  Let me revise all the migration notes to use PNPM instead of NPM:
+
+  Dependency Migration Guide (PNPM)
+
+  ---
+  Initial PNPM Setup (If Not Already Using)
+
+  # Install pnpm globally
+  npm install -g pnpm
+
+  # Initialize pnpm in the project
+  pnpm init
+
+  # Import from existing package-lock.json or yarn.lock
+  pnpm import
+
+  # Create .npmrc for Expo compatibility
+  echo "node-linker=hoisted" > .npmrc
+
+  ---
+  Priority 1: Critical Updates (Do First)
+
+  1. TanStack Query: 5.52.1 → 5.85.x
+
+  Migration Steps:
+  # Update package with pnpm
+  pnpm add @tanstack/react-query@^5.85.0
+
+  # If using Expo tools
+  pnpm expo install @tanstack/react-query@^5.85.0
+
+  ---
+  Priority 2: Performance Improvements
+
+  2. React Hook Form: Not installed → 7.60.0
+
+  Installation:
+  # Add with pnpm
+  pnpm add react-hook-form@^7.60.0
+
+  # Or with Expo
+  pnpm expo install react-hook-form@^7.60.0
+
+  ---
+  Priority 3: Development Experience
+
+  3. MSW (Mock Service Worker): Not installed → 2.x
+
+  Installation:
+  # Add as dev dependency
+  pnpm add -D msw@^2.0.0
+
+  ---
+  Priority 4: Security & Math Libraries
+
+  4. decimal.js: Not installed → 10.x
+
+  Installation:
+  pnpm add decimal.js
+
+  ---
+  Complete PNPM Migration Commands
+
+  Full Dependency Update Script
+
+  #!/bin/bash
+  # update-dependencies.sh
+
+  echo "🚀 Starting dependency updates with pnpm..."
+
+  # Update existing dependencies
+  echo "📦 Updating TanStack Query..."
+  pnpm add @tanstack/react-query@^5.85.0
+
+  # Add new production dependencies
+  echo "📦 Adding React Hook Form..."
+  pnpm add react-hook-form@^7.60.0
+
+  echo "📦 Adding decimal.js..."
+  pnpm add decimal.js@^10.4.3
+
+  # Add new dev dependencies
+  echo "📦 Adding MSW for API mocking..."
+  pnpm add -D msw@^2.0.0
+
+  echo "📦 Ensuring testing libraries are up to date..."
+  pnpm add -D @testing-library/react-native@latest
+
+  # Update peer dependencies if needed
+  echo "📦 Updating peer dependencies..."
+  pnpm add react-native-reanimated@3.16.2 react-native-safe-area-context
+
+  # Dedupe and optimize
+  echo "🧹 Optimizing dependencies..."
+  pnpm dedupe
+
+  echo "✅ Dependencies updated successfully!"
+
+  Package.json with PNPM Scripts
+
+  {
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "test": "jest",
+      "lint": "eslint .",
+      "type-check": "tsc --noEmit",
+      "deps:update": "pnpm update --interactive",
+      "deps:check": "pnpm outdated",
+      "deps:clean": "rm -rf node_modules pnpm-lock.yaml && pnpm install",
+      "deps:dedupe": "pnpm dedupe",
+      "postinstall": "pnpm expo install --fix"
+    },
+    "dependencies": {
+      "@tanstack/react-query": "^5.85.0",
+      "react-hook-form": "^7.60.0",
+      "decimal.js": "^10.4.3",
+      "zustand": "5.0.5",
+      "nativewind": "^4.1.23",
+      "react-native-mmkv": "^3.1.0",
+      "react-native": "0.79.4",
+      "react": "19.0.0",
+      "expo": "~53.0.0",
+      "expo-router": "~5.1.0"
+    },
+    "devDependencies": {
+      "msw": "^2.0.0",
+      "@testing-library/react-native": "^12.8.0",
+      "typescript": "~5.8.3"
+    },
+    "packageManager": "pnpm@9.0.0"
+  }
+
+  PNPM Workspace Configuration (for Monorepo)
+
+  # pnpm-workspace.yaml
+  packages:
+    - 'apps/*'
+    - 'packages/*'
+    - 'shared/*'
+
+  .npmrc Configuration for PNPM + Expo
+
+  # .npmrc
+  node-linker=hoisted
+  auto-install-peers=true
+  strict-peer-dependencies=false
+  shamefully-hoist=true
+
+  ---
+  PNPM-Specific Commands
+
+  Useful PNPM Commands for React Native
+
+  # Install all dependencies
+  pnpm install
+
+  # Add a new package
+  pnpm add package-name
+
+  # Add dev dependency
+  pnpm add -D package-name
+
+  # Update packages interactively
+  pnpm update --interactive
+
+  # Check for outdated packages
+  pnpm outdated
+
+  # Remove unused packages
+  pnpm prune
+
+  # Run scripts
+  pnpm run start
+  pnpm run test
+
+  # Execute binaries (like expo)
+  pnpm exec expo start
+
+  # Clean install
+  pnpm install --frozen-lockfile
+
+  # Fix peer dependency issues
+  pnpm install --fix-lockfile
+
+  ---
+  CI/CD Configuration for PNPM
+
+  GitHub Actions with PNPM
+
+  # .github/workflows/ci.yml
+  name: CI
+
+  on:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
+
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v3
+
+        - uses: pnpm/action-setup@v2
+          with:
+            version: 9
+
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '20'
+            cache: 'pnpm'
+
+        - name: Install dependencies
+          run: pnpm install --frozen-lockfile
+
+        - name: Type check
+          run: pnpm type-check
+
+        - name: Lint
+          run: pnpm lint
+
+        - name: Test
+          run: pnpm test
+
+  EAS Build with PNPM
+
+  // eas.json
+  {
+    "build": {
+      "development": {
+        "node": "20.11.0",
+        "pnpm": "9.0.0",
+        "env": {
+          "NODE_OPTIONS": "--max-old-space-size=4096"
+        }
+      },
+      "preview": {
+        "extends": "development",
+        "distribution": "internal"
+      },
+      "production": {
+        "extends": "development",
+        "env": {
+          "NODE_ENV": "production"
+        }
+      }
+    }
+  }
+
+  ---
+  Troubleshooting PNPM Issues
+
+  Common Issues & Solutions
+
+  Issue 1: Expo Metro bundler not finding packages
+  # Solution: Use hoisted node_modules
+  echo "node-linker=hoisted" > .npmrc
+  pnpm install
+
+  Issue 2: Peer dependency warnings
+  # Solution: Auto-install peers
+  echo "auto-install-peers=true" >> .npmrc
+  pnpm install
+
+  Issue 3: CI build failures
+  # Solution: Use frozen lockfile in CI
+  pnpm install --frozen-lockfile
+
+  Issue 4: Expo CLI not found
+  # Solution: Use pnpm exec
+  pnpm exec expo start
+  # Or add to scripts in package.json
+
+  ---
+  Migration from NPM/Yarn to PNPM
+
+  # Step-by-step migration
+  # 1. Backup current state
+  git add .
+  git commit -m "Backup: Before pnpm migration"
+
+  # 2. Remove old files
+  rm -rf node_modules package-lock.json yarn.lock
+
+  # 3. Install pnpm
+  npm install -g pnpm
+
+  # 4. Create .npmrc for Expo
+  echo "node-linker=hoisted" > .npmrc
+  echo "auto-install-peers=true" >> .npmrc
+
+  # 5. Install with pnpm
+  pnpm install
+
+  # 6. Update all dependencies
+  pnpm add @tanstack/react-query@^5.85.0
+  pnpm add react-hook-form@^7.60.0
+  pnpm add decimal.js@^10.4.3
+  pnpm add -D msw@^2.0.0
+
+  # 7. Test the setup
+  pnpm expo start --clear
+
+  # 8. Commit the changes
+  git add .
+  git commit -m "Migrate to pnpm with updated dependencies"
+
+  ---
+  Team Migration Checklist
+
+  ## Migration to PNPM Checklist
+
+  ### Pre-Migration
+  - [ ] Team notification sent
+  - [ ] Backup branch created
+  - [ ] CI/CD scripts reviewed
+
+  ### Migration Steps
+  - [ ] Install pnpm globally on all dev machines
+  - [ ] Remove npm/yarn files
+  - [ ] Create .npmrc with Expo settings
+  - [ ] Run pnpm install
+  - [ ] Update package.json scripts
+  - [ ] Test local development
+
+  ### Post-Migration
+  - [ ] Update CI/CD pipelines
+  - [ ] Update README with pnpm commands
+  - [ ] Update onboarding docs
+  - [ ] Team training session
+
+  ### Validation
+  - [ ] Dev server starts: `pnpm start`
+  - [ ] iOS build works: `pnpm ios`
+  - [ ] Android build works: `pnpm android`
+  - [ ] Tests pass: `pnpm test`
+  - [ ] EAS builds succeed
+
+  ---
+  PNPM migration guide complete! Would you like to:
+
+  1. Proceed to next section - Continue with Project Structure
+  2. Create automated migration script - Full automation script
+  3. Setup PNPM workspace - For monorepo structure
+  4. Review PNPM benefits - Why PNPM over npm/yarn
+
+  Select 1-4 or type your feedback:
+
+> 1
+
+⏺ Section 3: Project Structure
+
+  Let me define the exact directory structure for your React Native Expo project with file-based routing:
+
+  Project Structure for Trip Sync v2
+
+  sabron-trip-sync/
+  ├── .expo/                          # Expo configuration (auto-generated)
+  ├── .maestro/                       # E2E test flows
+  │   ├── flows/
+  │   │   ├── auth/
+  │   │   │   ├── login.yaml
+  │   │   │   └── biometric-setup.yaml
+  │   │   └── trips/
+  │   │       ├── create-trip.yaml
+  │   │       └── add-expense.yaml
+  │   └── config.yaml
+  ├── app/                            # Expo Router - File-based routing
+  │   ├── (auth)/                     # Auth group (protected routes)
+  │   │   ├── _layout.tsx            # Auth layout wrapper
+  │   │   ├── login.tsx              # Login screen
+  │   │   ├── register.tsx           # Registration screen
+  │   │   └── forgot-password.tsx    # Password recovery
+  │   ├── (tabs)/                     # Tab navigation group
+  │   │   ├── _layout.tsx            # Tab layout with bottom navigation
+  │   │   ├── index.tsx              # Trips list (main screen)
+  │   │   ├── expenses.tsx           # Global expenses view
+  │   │   ├── explore.tsx            # Explore/discover
+  │   │   └── profile.tsx            # User profile
+  │   ├── trip/
+  │   │   ├── [id]/                  # Dynamic route for trip details
+  │   │   │   ├── _layout.tsx        # Trip detail layout
+  │   │   │   ├── index.tsx          # Trip overview
+  │   │   │   ├── activities.tsx     # Activities list
+  │   │   │   ├── expenses.tsx       # Trip expenses
+  │   │   │   ├── documents.tsx      # Documents
+  │   │   │   └── settings.tsx       # Trip settings
+  │   │   └── create.tsx             # Create new trip
+  │   ├── _layout.tsx                # Root layout
+  │   ├── index.tsx                  # Entry point (redirects)
+  │   ├── +not-found.tsx            # 404 handler
+  │   └── +html.tsx                 # HTML template (web)
+  ├── assets/                         # Static assets
+  │   ├── fonts/                     # Custom fonts
+  │   ├── images/                    # Images and icons
+  │   └── animations/                # Lottie/Rive files
+  ├── components/                     # Reusable components
+  │   ├── ui/                        # Base UI components
+  │   │   ├── Button.tsx
+  │   │   ├── Input.tsx
+  │   │   ├── Card.tsx
+  │   │   ├── Modal.tsx
+  │   │   └── LoadingSpinner.tsx
+  │   ├── forms/                     # Form components
+  │   │   ├── ControlledInput.tsx
+  │   │   ├── DatePicker.tsx
+  │   │   ├── CurrencyInput.tsx
+  │   │   └── FormProvider.tsx
+  │   ├── trip/                      # Trip-specific components
+  │   │   ├── TripCard.tsx
+  │   │   ├── TripTimeline.tsx
+  │   │   └── ExpenseItem.tsx
+  │   └── layout/                    # Layout components
+  │       ├── Header.tsx
+  │       ├── TabBar.tsx
+  │       └── SafeAreaView.tsx
+  ├── hooks/                          # Custom React hooks
+  │   ├── api/                       # API hooks (TanStack Query)
+  │   │   ├── useTrips.ts
+  │   │   ├── useExpenses.ts
+  │   │   └── useAuth.ts
+  │   ├── useOfflineSync.ts         # Offline synchronization
+  │   ├── useBiometric.ts           # Biometric authentication
+  │   └── useTheme.ts               # Theme management
+  ├── lib/                           # Core libraries/utilities
+  │   ├── supabase.ts               # Supabase client setup
+  │   ├── mmkv.ts                   # MMKV storage setup
+  │   ├── queryClient.ts            # TanStack Query setup
+  │   └── constants.ts              # App constants
+  ├── services/                      # Business logic & API
+  │   ├── api/                      # API service layer
+  │   │   ├── trips.service.ts
+  │   │   ├── expenses.service.ts
+  │   │   ├── auth.service.ts
+  │   │   └── sync.service.ts
+  │   ├── offline/                  # Offline management
+  │   │   ├── queue.ts             # Offline action queue
+  │   │   └── sync.ts              # Sync orchestration
+  │   └── storage/                  # Local storage services
+  │       ├── secure.ts            # Secure storage (expo-secure-store)
+  │       └── cache.ts             # Cache management (MMKV)
+  ├── store/                        # Zustand state management
+  │   ├── auth.store.ts            # Authentication state
+  │   ├── trip.store.ts            # Trip state
+  │   ├── ui.store.ts              # UI state (theme, modals)
+  │   └── offline.store.ts         # Offline queue state
+  ├── types/                        # TypeScript definitions
+  │   ├── api.types.ts             # API response types
+  │   ├── models.types.ts          # Data model types
+  │   ├── forms.types.ts           # Form types
+  │   └── navigation.types.ts      # Navigation types
+  ├── utils/                        # Utility functions
+  │   ├── currency.ts              # Currency calculations (decimal.js)
+  │   ├── dates.ts                 # Date formatting/parsing
+  │   ├── validation.ts            # Validation rules
+  │   └── errors.ts                # Error handling
+  ├── __tests__/                   # Test files
+  │   ├── unit/                    # Unit tests
+  │   ├── integration/             # Integration tests
+  │   └── mocks/                   # MSW mocks
+  │       ├── handlers.ts
+  │       └── server.ts
+  ├── .bmad-core/                  # BMAD configuration
+  ├── .env.development             # Dev environment variables
+  ├── .env.production              # Production environment variables
+  ├── .eslintrc.js                # ESLint configuration
+  ├── .gitignore
+  ├── .npmrc                       # PNPM configuration
+  ├── app.config.ts               # Expo configuration
+  ├── babel.config.js             # Babel configuration
+  ├── eas.json                    # EAS Build configuration
+  ├── global.css                  # Global Tailwind CSS
+  ├── jest.config.js              # Jest configuration
+  ├── metro.config.js             # Metro bundler config
+  ├── package.json
+  ├── pnpm-lock.yaml             # PNPM lockfile
+  ├── tailwind.config.js         # Tailwind configuration
+  ├── tsconfig.json              # TypeScript configuration
+  └── README.md
+
+  Key Architectural Decisions
+
+  1. File-Based Routing (Expo Router)
+  - Uses app/ directory for automatic route generation
+  - Groups for authentication (auth) and tabs (tabs)
+  - Dynamic routes with [id] syntax
+  - Layout files _layout.tsx for nested navigation
+
+  2. Component Organization
+  - ui/: Pure, reusable UI components
+  - forms/: React Hook Form integrated components
+  - Domain-specific folders (trip/) for feature components
+
+  3. Service Layer Architecture
+  - services/api/: External API communication
+  - services/offline/: Offline-first functionality
+  - services/storage/: Local persistence layer
+
+  4. State Management Structure
+  - Separate stores by domain (auth, trip, ui)
+  - Offline store for queue management
+  - Clear separation between local and server state
+
+  5. Testing Strategy
+  - Co-located unit tests in __tests__/
+  - Maestro flows in .maestro/ for E2E
+  - MSW mocks for API testing
+
+  Rationale for Structure
+
+  Trade-offs Made:
+  - File-based routing over config: Better DX, automatic code splitting
+  - Feature folders in components: Easier to find related components
+  - Separate services layer: Clear business logic separation
+  - Multiple stores over single: Better code splitting and clarity
+
+  Assumptions:
+  - Team is familiar with Expo Router patterns
+  - Offline-first is a primary concern
+  - Type safety is critical (extensive types/ folder)
+
+  Areas for Discussion:
+  - Consider features/ folder for vertical slicing if app grows
+  - May need i18n/ folder for internationalization
+  - Could add config/ for environment-specific settings
+
+  ---
+  This section requires your input for elicitation.
+
+  Select an option (1-9) to proceed:
+
+  1. Proceed to next section - Accept the project structure
+  2. Expand or Contract for Audience - Adjust detail level
+  3. Explain Reasoning (CoT Step-by-Step) - Deep dive into structure decisions
+  4. Critique and Refine - Review for improvements
+  5. Analyze Logical Flow and Dependencies - Examine folder relationships
+  6. Identify Potential Risks and Unforeseen Issues - Explore structure risks
+  7. Challenge from Critical Perspective - Apply YAGNI to structure
+  8. Tree of Thoughts Deep Dive - Explore alternative structures
+  9. Agile Team Perspective Shift - View from different team roles
+
+  Select 1-9 or just type your question/feedback:
+
+> add the i18n,features and config
+
+⏺ Enhanced Project Structure with i18n, Features, and Config
+
+  sabron-trip-sync/
+  ├── .expo/                          # Expo configuration (auto-generated)
+  ├── .maestro/                       # E2E test flows
+  │   ├── flows/
+  │   │   ├── auth/
+  │   │   │   ├── login.yaml
+  │   │   │   └── biometric-setup.yaml
+  │   │   └── trips/
+  │   │       ├── create-trip.yaml
+  │   │       └── add-expense.yaml
+  │   └── config.yaml
+  ├── app/                            # Expo Router - File-based routing
+  │   ├── (auth)/                     # Auth group (protected routes)
+  │   │   ├── _layout.tsx            # Auth layout wrapper
+  │   │   ├── login.tsx              # Login screen
+  │   │   ├── register.tsx           # Registration screen
+  │   │   └── forgot-password.tsx    # Password recovery
+  │   ├── (tabs)/                     # Tab navigation group
+  │   │   ├── _layout.tsx            # Tab layout with bottom navigation
+  │   │   ├── index.tsx              # Trips list (main screen)
+  │   │   ├── expenses.tsx           # Global expenses view
+  │   │   ├── explore.tsx            # Explore/discover
+  │   │   └── profile.tsx            # User profile
+  │   ├── trip/
+  │   │   ├── [id]/                  # Dynamic route for trip details
+  │   │   │   ├── _layout.tsx        # Trip detail layout
+  │   │   │   ├── index.tsx          # Trip overview
+  │   │   │   ├── activities.tsx     # Activities list
+  │   │   │   ├── expenses.tsx       # Trip expenses
+  │   │   │   ├── documents.tsx      # Documents
+  │   │   │   └── settings.tsx       # Trip settings
+  │   │   └── create.tsx             # Create new trip
+  │   ├── _layout.tsx                # Root layout
+  │   ├── index.tsx                  # Entry point (redirects)
+  │   ├── +not-found.tsx            # 404 handler
+  │   └── +html.tsx                 # HTML template (web)
+  ├── assets/                         # Static assets
+  │   ├── fonts/                     # Custom fonts
+  │   ├── images/                    # Images and icons
+  │   └── animations/                # Lottie/Rive files
+  ├── components/                     # Reusable components
+  │   ├── ui/                        # Base UI components
+  │   │   ├── Button.tsx
+  │   │   ├── Input.tsx
+  │   │   ├── Card.tsx
+  │   │   ├── Modal.tsx
+  │   │   └── LoadingSpinner.tsx
+  │   ├── forms/                     # Form components
+  │   │   ├── ControlledInput.tsx
+  │   │   ├── DatePicker.tsx
+  │   │   ├── CurrencyInput.tsx
+  │   │   └── FormProvider.tsx
+  │   ├── trip/                      # Trip-specific components
+  │   │   ├── TripCard.tsx
+  │   │   ├── TripTimeline.tsx
+  │   │   └── ExpenseItem.tsx
+  │   └── layout/                    # Layout components
+  │       ├── Header.tsx
+  │       ├── TabBar.tsx
+  │       └── SafeAreaView.tsx
+  ├── config/                         # ⭐ NEW: Configuration management
+  │   ├── app.config.ts              # App-wide configuration
+  │   ├── api.config.ts              # API endpoints & settings
+  │   ├── theme.config.ts            # Theme configuration
+  │   ├── storage.config.ts          # Storage keys & settings
+  │   └── features.config.ts         # Feature flags
+  ├── features/                       # ⭐ NEW: Feature-based modules
+  │   ├── auth/                      # Authentication feature
+  │   │   ├── components/            # Feature-specific components
+  │   │   │   ├── LoginForm.tsx
+  │   │   │   └── BiometricPrompt.tsx
+  │   │   ├── hooks/                # Feature-specific hooks
+  │   │   │   └── useAuthentication.ts
+  │   │   ├── services/             # Feature-specific services
+  │   │   │   └── auth.service.ts
+  │   │   ├── stores/               # Feature-specific state
+  │   │   │   └── auth.store.ts
+  │   │   └── types/                # Feature-specific types
+  │   │       └── auth.types.ts
+  │   ├── trips/                    # Trips management feature
+  │   │   ├── components/
+  │   │   │   ├── TripCreationWizard.tsx
+  │   │   │   ├── TripList.tsx
+  │   │   │   └── TripFilters.tsx
+  │   │   ├── hooks/
+  │   │   │   ├── useTrips.ts
+  │   │   │   └── useTripSync.ts
+  │   │   ├── services/
+  │   │   │   └── trips.service.ts
+  │   │   ├── stores/
+  │   │   │   └── trips.store.ts
+  │   │   └── types/
+  │   │       └── trip.types.ts
+  │   ├── expenses/                 # Expense tracking feature
+  │   │   ├── components/
+  │   │   │   ├── ExpenseForm.tsx
+  │   │   │   ├── ExpenseSplitter.tsx
+  │   │   │   └── CurrencyConverter.tsx
+  │   │   ├── hooks/
+  │   │   │   └── useExpenseCalculations.ts
+  │   │   ├── services/
+  │   │   │   └── expenses.service.ts
+  │   │   ├── stores/
+  │   │   │   └── expenses.store.ts
+  │   │   └── utils/
+  │   │       └── currency.utils.ts
+  │   └── offline/                  # Offline sync feature
+  │       ├── components/
+  │       │   └── SyncIndicator.tsx
+  │       ├── hooks/
+  │       │   └── useOfflineQueue.ts
+  │       ├── services/
+  │       │   ├── sync.service.ts
+  │       │   └── queue.service.ts
+  │       └── stores/
+  │           └── offline.store.ts
+  ├── hooks/                         # Global/shared hooks
+  │   ├── useTheme.ts               # Theme management
+  │   ├── useLocale.ts              # i18n hook
+  │   └── useFeatureFlag.ts        # Feature flag hook
+  ├── i18n/                         # ⭐ NEW: Internationalization
+  │   ├── locales/                 # Translation files
+  │   │   ├── en/                  # English translations
+  │   │   │   ├── common.json      # Common translations
+  │   │   │   ├── auth.json        # Auth-related translations
+  │   │   │   ├── trips.json       # Trip-related translations
+  │   │   │   └── expenses.json    # Expense translations
+  │   │   ├── es/                  # Spanish translations
+  │   │   │   ├── common.json
+  │   │   │   ├── auth.json
+  │   │   │   ├── trips.json
+  │   │   │   └── expenses.json
+  │   │   ├── fr/                  # French translations
+  │   │   │   └── ...
+  │   │   └── ja/                  # Japanese translations
+  │   │       └── ...
+  │   ├── config.ts                # i18n configuration
+  │   ├── provider.tsx             # i18n provider component
+  │   └── utils.ts                 # i18n utility functions
+  ├── lib/                          # Core libraries/utilities
+  │   ├── supabase.ts              # Supabase client setup
+  │   ├── mmkv.ts                  # MMKV storage setup
+  │   ├── queryClient.ts           # TanStack Query setup
+  │   └── constants.ts             # App constants
+  ├── services/                     # Shared services (cross-feature)
+  │   ├── api/                     # Base API setup
+  │   │   └── client.ts            # API client configuration
+  │   ├── storage/                 # Storage services
+  │   │   ├── secure.ts           # Secure storage
+  │   │   └── cache.ts            # Cache management
+  │   └── monitoring/              # App monitoring
+  │       ├── analytics.ts         # Analytics service
+  │       └── crashlytics.ts      # Crash reporting
+  ├── store/                        # Global state (cross-feature)
+  │   ├── ui.store.ts              # UI state (theme, modals)
+  │   └── app.store.ts             # App-level state
+  ├── types/                        # Global TypeScript definitions
+  │   ├── api.types.ts             # API response types
+  │   ├── models.types.ts          # Data model types
+  │   ├── forms.types.ts           # Form types
+  │   └── navigation.types.ts      # Navigation types
+  ├── utils/                        # Global utility functions
+  │   ├── dates.ts                 # Date formatting/parsing
+  │   ├── validation.ts            # Validation rules
+  │   └── errors.ts                # Error handling
+  ├── __tests__/                   # Test files
+  │   ├── unit/                    # Unit tests
+  │   ├── integration/             # Integration tests
+  │   └── mocks/                   # MSW mocks
+  │       ├── handlers.ts
+  │       └── server.ts
+  ├── .bmad-core/                  # BMAD configuration
+  ├── .env.development             # Dev environment variables
+  ├── .env.production              # Production environment variables
+  ├── .env.staging                 # Staging environment variables
+  ├── .eslintrc.js                # ESLint configuration
+  ├── .gitignore
+  ├── .npmrc                       # PNPM configuration
+  ├── app.config.ts               # Expo configuration
+  ├── babel.config.js             # Babel configuration
+  ├── eas.json                    # EAS Build configuration
+  ├── global.css                  # Global Tailwind CSS
+  ├── jest.config.js              # Jest configuration
+  ├── metro.config.js             # Metro bundler config
+  ├── package.json
+  ├── pnpm-lock.yaml             # PNPM lockfile
+  ├── tailwind.config.js         # Tailwind configuration
+  ├── tsconfig.json              # TypeScript configuration
+  └── README.md
+
+  New Folder Explanations
+
+  1. Config Folder
+
+  // config/app.config.ts
+  export const AppConfig = {
+    appName: 'Trip Sync',
+    version: '2.0.0',
+    minimumAppVersion: '2.0.0',
+    environment: process.env.EXPO_PUBLIC_ENV || 'development',
+    supportEmail: 'support@tripsync.app',
+    privacyPolicyUrl: 'https://tripsync.app/privacy',
+    termsOfServiceUrl: 'https://tripsync.app/terms',
+  }
+
+  // config/api.config.ts
+  export const ApiConfig = {
+    baseUrl: process.env.EXPO_PUBLIC_API_URL || 'https://api.tripsync.app',
+    timeout: 30000,
+    retryAttempts: 3,
+    endpoints: {
+      auth: '/auth',
+      trips: '/trips',
+      expenses: '/expenses',
+      sync: '/sync',
+    },
+  }
+
+  // config/features.config.ts
+  export const FeatureFlags = {
+    enableBiometric: true,
+    enableOfflineMode: true,
+    enableExpenseSplitting: true,
+    enableAIRecommendations: false, // Coming soon
+    enableSocialSharing: false, // In development
+    maxTripParticipants: 20,
+    maxExpenseAttachments: 5,
+  }
+
+  2. Features Folder (Vertical Slicing)
+
+  Each feature is self-contained with its own:
+  - Components: UI specific to the feature
+  - Hooks: Business logic hooks
+  - Services: API and data services
+  - Stores: Feature-specific state
+  - Types: TypeScript definitions
+  - Utils: Feature-specific utilities
+
+  Benefits:
+  - Scalability: Easy to add/remove features
+  - Team collaboration: Teams can own features
+  - Code splitting: Better bundle optimization
+  - Testing: Feature-level test organization
+
+  3. i18n Folder
+
+  // i18n/config.ts
+  import i18n from 'i18next'
+  import { initReactI18next } from 'react-i18next'
+  import * as Localization from 'expo-localization'
+
+  export const supportedLanguages = {
+    en: 'English',
+    es: 'Español',
+    fr: 'Français',
+    ja: '日本語',
+  }
+
+  // i18n/locales/en/trips.json
+  {
+    "createTrip": "Create New Trip",
+    "tripName": "Trip Name",
+    "destination": "Destination",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "participants": "Participants",
+    "addParticipant": "Add Participant",
+    "tripCreated": "Trip created successfully!"
+  }
+
+  // Usage in components
+  import { useTranslation } from 'react-i18next'
+
+  export function TripCreationForm() {
+    const { t } = useTranslation('trips')
+
+    return (
+      <View>
+        <Text>{t('createTrip')}</Text>
+        <Input placeholder={t('tripName')} />
+      </View>
+    )
+  }
+
+  Architecture Benefits
+
+  Feature-Based Architecture Advantages
+
+  1. Scalability: Features can grow independently
+  2. Maintainability: Clear boundaries and ownership
+  3. Reusability: Features can be shared across projects
+  4. Testing: Isolated feature testing
+  5. Onboarding: New developers can focus on one feature
+
+  Configuration Management Benefits
+
+  1. Centralized Settings: All config in one place
+  2. Environment Management: Easy switching between environments
+  3. Feature Flags: Progressive rollout capabilities
+  4. Type Safety: Strongly typed configuration
+
+  i18n Structure Benefits
+
+  1. Namespace Organization: Translations by domain
+  2. Lazy Loading: Load only needed translations
+  3. Type Safety: Generated types from JSON
+  4. Maintainability: Easy to add new languages
+
+⏺ ---
+  Enhanced project structure with i18n, features, and config folders is complete. Would you like to:
+
+  1. Proceed to next section - Continue with Component Standards
+  2. Review feature folder details - Deep dive into a specific feature
+  3. Explore i18n implementation - Detailed internationalization setup
+  4. Examine config patterns - Configuration management strategies
+
+  Select 1-4 or type your feedback:
+
+> did you consider reactnative reusables
+
+⏺ Excellent point! Let me check React Native Reusables and consider how it could improve our component architecture:
+
+⏺ exa - web_search_exa (MCP)(query: "React Native Reusables component library 2025 NativeWind Tailwind components", numResults: 5)
+  ⎿  {
+       "requestId": "b8bee8f4396b01a46bf229d4594e5617",
+       "autopromptString": "React Native Reusables component library 2025 NativeWind Tailwind components",
+     … +133 lines (ctrl+r to expand)
+
+⏺ exa - crawling_exa (MCP)(url: "https://github.com/mrzachnugent/react-native-reusables", maxCharacters: 5000)
+  ⎿  {
+       "requestId": "cb528112948f967dec3151676bdeba26",
+       "results": [
+     … +71 lines (ctrl+r to expand)
+
+⏺ YES! React Native Reusables Integration
+
+  You're absolutely right to consider React Native Reusables! It's essentially the shadcn/ui for React Native. Let me revise the component structure to leverage this library:
+
+  Updated Project Structure with React Native Reusables
+
+  sabron-trip-sync/
+  ├── components/                     # Component library structure
+  │   ├── primitives/                # ⭐ React Native Reusables primitives
+  │   │   ├── accordion.tsx          # From RN Reusables
+  │   │   ├── alert-dialog.tsx       # From RN Reusables
+  │   │   ├── avatar.tsx             # From RN Reusables
+  │   │   ├── badge.tsx              # From RN Reusables
+  │   │   ├── button.tsx             # From RN Reusables
+  │   │   ├── card.tsx               # From RN Reusables
+  │   │   ├── checkbox.tsx           # From RN Reusables
+  │   │   ├── collapsible.tsx        # From RN Reusables
+  │   │   ├── dialog.tsx             # From RN Reusables
+  │   │   ├── dropdown-menu.tsx      # From RN Reusables
+  │   │   ├── input.tsx              # From RN Reusables
+  │   │   ├── label.tsx              # From RN Reusables
+  │   │   ├── popover.tsx            # From RN Reusables
+  │   │   ├── progress.tsx           # From RN Reusables
+  │   │   ├── radio-group.tsx        # From RN Reusables
+  │   │   ├── select.tsx             # From RN Reusables
+  │   │   ├── separator.tsx          # From RN Reusables
+  │   │   ├── skeleton.tsx           # From RN Reusables
+  │   │   ├── switch.tsx             # From RN Reusables
+  │   │   ├── table.tsx              # From RN Reusables
+  │   │   ├── tabs.tsx               # From RN Reusables
+  │   │   ├── text.tsx               # From RN Reusables
+  │   │   ├── textarea.tsx           # From RN Reusables
+  │   │   ├── toggle.tsx             # From RN Reusables
+  │   │   ├── toggle-group.tsx       # From RN Reusables
+  │   │   └── tooltip.tsx            # From RN Reusables
+  │   ├── ui/                        # Composed/extended components
+  │   │   ├── LoadingButton.tsx     # Button + ActivityIndicator
+  │   │   ├── CurrencyInput.tsx     # Input + currency formatting
+  │   │   ├── DatePickerInput.tsx   # Input + date picker
+  │   │   ├── SearchBar.tsx         # Input + search icon
+  │   │   └── EmptyState.tsx        # Custom empty state
+  │   ├── forms/                     # Form-specific components
+  │   │   ├── FormField.tsx         # Label + Input + Error
+  │   │   ├── FormProvider.tsx      # React Hook Form provider
+  │   │   └── ControlledInput.tsx   # RHF controlled wrapper
+  │   └── trip/                      # Domain-specific compositions
+  │       ├── TripCard.tsx          # Card + custom content
+  │       ├── ExpenseItem.tsx       # Custom expense display
+  │       └── ParticipantAvatar.tsx # Avatar + status
+  ├── lib/                           # Core utilities
+  │   ├── utils.ts                   # cn() utility from RN Reusables
+  │   ├── constants.ts               # App constants
+  │   └── icons.ts                   # Icon configuration
+
+  Installation & Setup
+
+  # Install React Native Reusables CLI
+  pnpm add -D react-native-reusables-cli
+
+  # Initialize (this sets up the lib/utils.ts and base config)
+  pnpm dlx react-native-reusables-cli@latest init
+
+  # Add components as needed
+  pnpm dlx react-native-reusables-cli@latest add button card input
+
+  Component Implementation Strategy
+
+  1. Use Primitives Directly
+
+  // Direct usage of RN Reusables components
+  import { Button } from '@/components/primitives/button'
+  import { Card } from '@/components/primitives/card'
+  import { Input } from '@/components/primitives/input'
+
+  export function LoginScreen() {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Welcome Back</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Input placeholder="Email" />
+          <Input placeholder="Password" secureTextEntry />
+        </CardContent>
+        <CardFooter>
+          <Button>Sign In</Button>
+        </CardFooter>
+      </Card>
+    )
+  }
+
+  2. Extend for Domain-Specific Needs
+
+  // components/ui/LoadingButton.tsx
+  import { Button, ButtonProps } from '@/components/primitives/button'
+  import { ActivityIndicator } from 'react-native'
+
+  interface LoadingButtonProps extends ButtonProps {
+    loading?: boolean
+  }
+
+  export function LoadingButton({
+    loading,
+    children,
+    disabled,
+    ...props
+  }: LoadingButtonProps) {
+    return (
+      <Button disabled={disabled || loading} {...props}>
+        {loading ? <ActivityIndicator /> : children}
+      </Button>
+    )
+  }
+
+  3. Compose Complex Components
+
+  // features/trips/components/TripCard.tsx
+  import { Card, CardHeader, CardContent } from '@/components/primitives/card'
+  import { Badge } from '@/components/primitives/badge'
+  import { Avatar } from '@/components/primitives/avatar'
+  import { Text } from '@/components/primitives/text'
+
+  export function TripCard({ trip }) {
+    return (
+      <Card className="mb-4">
+        <CardHeader>
+          <View className="flex-row justify-between">
+            <Text className="text-xl font-bold">{trip.name}</Text>
+            <Badge variant={trip.status}>{trip.status}</Badge>
+          </View>
+        </CardHeader>
+        <CardContent>
+          <View className="flex-row gap-2">
+            {trip.participants.map(p => (
+              <Avatar key={p.id} source={{ uri: p.avatar }} />
+            ))}
+          </View>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  Benefits of Using React Native Reusables
+
+  1. shadcn/ui Pattern: Familiar copy-paste pattern, not a dependency
+  2. Full Control: Components live in your codebase, fully customizable
+  3. Accessibility Built-in: All components are accessible by default
+  4. NativeWind Integration: Works perfectly with Tailwind classes
+  5. Platform-Specific: Proper iOS/Android styling out of the box
+  6. TypeScript First: Full type safety
+  7. Lightweight: Only add what you need
+
+  Updated Tech Stack Addition
+
+  | Category          | Technology             | Version | Purpose       | Rationale                                       |
+  |-------------------|------------------------|---------|---------------|-------------------------------------------------|
+  | Component Library | React Native Reusables | Latest  | UI primitives | shadcn/ui pattern for RN, copy-paste components |
+
+  Component Guidelines with RN Reusables
+
+  // lib/utils.ts (provided by RN Reusables)
+  import { clsx, type ClassValue } from 'clsx'
+  import { twMerge } from 'tailwind-merge'
+
+  export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
+  }
+
+  // Example usage in custom component
+  import { cn } from '@/lib/utils'
+
+  export function CustomCard({ className, ...props }) {
+    return (
+      <View
+        className={cn(
+          "rounded-lg border border-border bg-card p-4",
+          className
+        )}
+        {...props}
+      />
+    )
+  }
+
+  Component Decision Tree
+
+  Need a UI component?
+  ├── Is it a basic primitive? (button, input, card)
+  │   └── Use React Native Reusables directly
+  ├── Does it need domain logic?
+  │   └── Wrap RN Reusables component with domain logic
+  ├── Is it a complex composition?
+  │   └── Compose multiple RN Reusables components
+  └── Is it completely custom?
+      └── Build from scratch using NativeWind classes
+
+  ---
+  React Native Reusables has been integrated into the architecture! This gives you:
+  - 30+ pre-built, accessible components
+  - shadcn/ui-like developer experience
+  - Full customization control
+  - Consistent with web development patterns
+
+  Would you like to:
+
+  1. Proceed to next section - Continue with Component Standards
+  2. Explore component examples - See more RN Reusables patterns
+  3. Review primitive list - Full list of available components
+  4. Discuss customization - Theming and styling approach
+
+  Select 1-4 or type your feedback:
+
+> 4
+
+⏺ Theming and Customization with React Native Reusables
+
+  Let me detail the comprehensive theming and styling approach for React Native Reusables with NativeWind:
+
+  Theme Configuration Structure
+
+  // config/theme.config.ts
+  export const theme = {
+    colors: {
+      // Base colors using CSS variables for dynamic theming
+      background: 'hsl(var(--background))',
+      foreground: 'hsl(var(--foreground))',
+      card: {
+        DEFAULT: 'hsl(var(--card))',
+        foreground: 'hsl(var(--card-foreground))',
+      },
+      popover: {
+        DEFAULT: 'hsl(var(--popover))',
+        foreground: 'hsl(var(--popover-foreground))',
+      },
+      primary: {
+        DEFAULT: 'hsl(var(--primary))',
+        foreground: 'hsl(var(--primary-foreground))',
+      },
+      secondary: {
+        DEFAULT: 'hsl(var(--secondary))',
+        foreground: 'hsl(var(--secondary-foreground))',
+      },
+      muted: {
+        DEFAULT: 'hsl(var(--muted))',
+        foreground: 'hsl(var(--muted-foreground))',
+      },
+      accent: {
+        DEFAULT: 'hsl(var(--accent))',
+        foreground: 'hsl(var(--accent-foreground))',
+      },
+      destructive: {
+        DEFAULT: 'hsl(var(--destructive))',
+        foreground: 'hsl(var(--destructive-foreground))',
+      },
+      border: 'hsl(var(--border))',
+      input: 'hsl(var(--input))',
+      ring: 'hsl(var(--ring))',
+    },
+    radius: {
+      sm: '0.5rem',
+      md: '0.625rem',
+      lg: '0.75rem',
+      xl: '1rem',
+      full: '9999px',
+    },
+  }
+
+  CSS Variables Setup
+
+  /* global.css */
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer base {
+    :root {
+      /* Light Theme - Trip Sync Brand Colors */
+      --background: 0 0% 100%;          /* white */
+      --foreground: 224 71% 4%;         /* near black */
+
+      --card: 0 0% 100%;
+      --card-foreground: 224 71% 4%;
+
+      --popover: 0 0% 100%;
+      --popover-foreground: 224 71% 4%;
+
+      --primary: 204 94% 53%;           /* Trip Sync Blue */
+      --primary-foreground: 0 0% 100%;
+
+      --secondary: 163 75% 45%;         /* Trip Sync Teal */
+      --secondary-foreground: 0 0% 100%;
+
+      --muted: 220 14% 96%;
+      --muted-foreground: 220 9% 46%;
+
+      --accent: 43 96% 56%;             /* Trip Sync Yellow */
+      --accent-foreground: 224 71% 4%;
+
+      --destructive: 0 84% 60%;         /* Error red */
+      --destructive-foreground: 0 0% 100%;
+
+      --border: 220 13% 91%;
+      --input: 220 13% 91%;
+      --ring: 204 94% 53%;
+
+      --radius: 0.625rem;
+    }
+
+    .dark {
+      /* Dark Theme */
+      --background: 224 71% 4%;
+      --foreground: 210 20% 98%;
+
+      --card: 224 71% 4%;
+      --card-foreground: 210 20% 98%;
+
+      --popover: 224 71% 4%;
+      --popover-foreground: 210 20% 98%;
+
+      --primary: 204 94% 63%;           /* Lighter blue for dark mode */
+      --primary-foreground: 224 71% 4%;
+
+      --secondary: 163 75% 55%;         /* Lighter teal for dark mode */
+      --secondary-foreground: 224 71% 4%;
+
+      --muted: 215 28% 17%;
+      --muted-foreground: 217 19% 64%;
+
+      --accent: 43 96% 66%;             /* Lighter yellow for dark mode */
+      --accent-foreground: 224 71% 4%;
+
+      --destructive: 0 62% 50%;
+      --destructive-foreground: 210 20% 98%;
+
+      --border: 215 28% 17%;
+      --input: 215 28% 17%;
+      --ring: 204 94% 63%;
+    }
+  }
+
+  Component Customization Patterns
+
+  1. Variant System
+
+  // components/primitives/button.tsx
+  import { cva, type VariantProps } from 'class-variance-authority'
+  import { cn } from '@/lib/utils'
+
+  const buttonVariants = cva(
+    // Base styles
+    'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+  disabled:opacity-50 disabled:pointer-events-none',
+    {
+      variants: {
+        variant: {
+          default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+          destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+          outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+          secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          ghost: 'hover:bg-accent hover:text-accent-foreground',
+          link: 'text-primary underline-offset-4 hover:underline',
+          // Custom Trip Sync variants
+          success: 'bg-green-500 text-white hover:bg-green-600',
+          warning: 'bg-yellow-500 text-white hover:bg-yellow-600',
+        },
+        size: {
+          default: 'h-10 px-4 py-2',
+          sm: 'h-9 rounded-md px-3',
+          lg: 'h-11 rounded-md px-8',
+          icon: 'h-10 w-10',
+          // Custom sizes for mobile
+          full: 'h-12 w-full',
+          pill: 'h-10 px-6 rounded-full',
+        },
+      },
+      defaultVariants: {
+        variant: 'default',
+        size: 'default',
+      },
+    }
+  )
+
+  export interface ButtonProps
+    extends React.ComponentPropsWithoutRef<typeof Pressable>,
+      VariantProps<typeof buttonVariants> {
+    asChild?: boolean
+  }
+
+  export const Button = React.forwardRef<
+    React.ElementRef<typeof Pressable>,
+    ButtonProps
+  >(({ className, variant, size, ...props }, ref) => {
+    return (
+      <Pressable
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  })
+
+  2. Dynamic Theme Switching
+
+  // hooks/useTheme.ts
+  import { useColorScheme } from 'nativewind'
+  import { vars } from 'nativewind'
+  import { useMMKVString } from 'react-native-mmkv'
+
+  export function useTheme() {
+    const { colorScheme, setColorScheme, toggleColorScheme } = useColorScheme()
+    const [customTheme, setCustomTheme] = useMMKVString('custom-theme')
+
+    const applyCustomTheme = (theme: 'blue' | 'green' | 'purple') => {
+      const themes = {
+        blue: vars({
+          '--primary': '204 94% 53%',
+          '--secondary': '163 75% 45%',
+          '--accent': '43 96% 56%',
+        }),
+        green: vars({
+          '--primary': '142 76% 36%',
+          '--secondary': '163 75% 45%',
+          '--accent': '43 96% 56%',
+        }),
+        purple: vars({
+          '--primary': '262 83% 58%',
+          '--secondary': '237 55% 65%',
+          '--accent': '43 96% 56%',
+        }),
+      }
+
+      return themes[theme]
+    }
+
+    return {
+      colorScheme,
+      setColorScheme,
+      toggleColorScheme,
+      applyCustomTheme,
+      customTheme,
+      setCustomTheme,
+    }
+  }
+
+  3. Platform-Specific Customization
+
+  // components/ui/PlatformButton.tsx
+  import { Platform } from 'react-native'
+  import { Button, ButtonProps } from '@/components/primitives/button'
+  import { cn } from '@/lib/utils'
+
+  export function PlatformButton({ className, ...props }: ButtonProps) {
+    return (
+      <Button
+        className={cn(
+          Platform.select({
+            ios: 'shadow-sm',
+            android: 'elevation-2',
+          }),
+          className
+        )}
+        {...props}
+      />
+    )
+  }
+
+  Advanced Customization Techniques
+
+  1. Compound Components Pattern
+
+  // components/ui/TripCard.tsx
+  import { createContext, useContext } from 'react'
+  import { Card } from '@/components/primitives/card'
+  import { cn } from '@/lib/utils'
+
+  const TripCardContext = createContext<{ variant?: 'default' | 'compact' }>({})
+
+  export function TripCard({
+    children,
+    variant = 'default',
+    className,
+    ...props
+  }) {
+    return (
+      <TripCardContext.Provider value={{ variant }}>
+        <Card
+          className={cn(
+            variant === 'compact' ? 'p-2' : 'p-4',
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </Card>
+      </TripCardContext.Provider>
+    )
+  }
+
+  TripCard.Header = function TripCardHeader({ className, ...props }) {
+    const { variant } = useContext(TripCardContext)
+    return (
+      <View
+        className={cn(
+          'flex-row justify-between',
+          variant === 'compact' ? 'mb-1' : 'mb-3',
+          className
+        )}
+        {...props}
+      />
+    )
+  }
+
+  TripCard.Title = function TripCardTitle({ className, ...props }) {
+    const { variant } = useContext(TripCardContext)
+    return (
+      <Text
+        className={cn(
+          'font-bold',
+          variant === 'compact' ? 'text-base' : 'text-xl',
+          className
+        )}
+        {...props}
+      />
+    )
+  }
+
+  // Usage
+  <TripCard variant="compact">
+    <TripCard.Header>
+      <TripCard.Title>Weekend in Paris</TripCard.Title>
+      <Badge>Active</Badge>
+    </TripCard.Header>
+  </TripCard>
+
+  2. Animation Variants
+
+  // components/ui/AnimatedButton.tsx
+  import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring
+  } from 'react-native-reanimated'
+  import { Button } from '@/components/primitives/button'
+
+  const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
+
+  export function AnimatedButton({ onPress, ...props }) {
+    const scale = useSharedValue(1)
+
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [{ scale: scale.value }],
+    }))
+
+    const handlePressIn = () => {
+      scale.value = withSpring(0.95)
+    }
+
+    const handlePressOut = () => {
+      scale.value = withSpring(1)
+    }
+
+    return (
+      <AnimatedPressable
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        onPress={onPress}
+        style={animatedStyle}
+        {...props}
+      />
+    )
+  }
+
+  3. Responsive Variants
+
+  // components/ui/ResponsiveGrid.tsx
+  import { useWindowDimensions } from 'react-native'
+  import { cn } from '@/lib/utils'
+
+  export function ResponsiveGrid({ children, className }) {
+    const { width } = useWindowDimensions()
+
+    const columns = width < 400 ? 1 : width < 768 ? 2 : 3
+
+    return (
+      <View
+        className={cn(
+          'flex-row flex-wrap',
+          className
+        )}
+      >
+        {React.Children.map(children, (child, index) => (
+          <View
+            className={cn(
+              columns === 1 && 'w-full',
+              columns === 2 && 'w-1/2',
+              columns === 3 && 'w-1/3',
+              'p-2'
+            )}
+          >
+            {child}
+          </View>
+        ))}
+      </View>
+    )
+  }
+
+  Tailwind Configuration for Customization
+
+  // tailwind.config.js
+  module.exports = {
+    content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+    presets: [require('nativewind/preset')],
+    theme: {
+      extend: {
+        colors: {
+          // Custom Trip Sync colors
+          'trip-blue': {
+            50: '#e6f4ff',
+            500: '#1890ff',
+            900: '#003a8c',
+          },
+          'trip-teal': {
+            50: '#e6fffb',
+            500: '#13c2c2',
+            900: '#00474f',
+          },
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        spacing: {
+          'safe-top': 'env(safe-area-inset-top)',
+          'safe-bottom': 'env(safe-area-inset-bottom)',
+        },
+        animation: {
+          'fade-in': 'fadeIn 0.5s ease-in-out',
+          'slide-up': 'slideUp 0.3s ease-out',
+        },
+      },
+    },
+    plugins: [
+      require('@tailwindcss/typography'),
+      require('@tailwindcss/forms'),
+    ],
+  }
+
+  Design Token System
+
+  // config/design-tokens.ts
+  export const DesignTokens = {
+    // Spacing scale
+    spacing: {
+      xs: 4,
+      sm: 8,
+      md: 16,
+      lg: 24,
+      xl: 32,
+      xxl: 48,
+    },
+
+    // Typography scale
+    typography: {
+      xs: { fontSize: 12, lineHeight: 16 },
+      sm: { fontSize: 14, lineHeight: 20 },
+      base: { fontSize: 16, lineHeight: 24 },
+      lg: { fontSize: 18, lineHeight: 28 },
+      xl: { fontSize: 20, lineHeight: 28 },
+      '2xl': { fontSize: 24, lineHeight: 32 },
+      '3xl': { fontSize: 30, lineHeight: 36 },
+    },
+
+    // Border radius scale
+    radii: {
+      none: 0,
+      sm: 4,
+      md: 8,
+      lg: 12,
+      xl: 16,
+      full: 9999,
+    },
+
+    // Shadow scale (iOS)
+    shadows: {
+      sm: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+      },
+      md: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      lg: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 8,
+      },
+    },
+
+    // Elevation scale (Android)
+    elevations: {
+      sm: 2,
+      md: 4,
+      lg: 8,
+    },
+  }
+
+  Usage Examples
+
+  // Using custom theme variants
+  <Button variant="success">Save Trip</Button>
+  <Button variant="warning" size="pill">Pending Approval</Button>
+
+  // Using compound components
+  <TripCard variant="compact">
+    <TripCard.Header>
+      <TripCard.Title>Tokyo Adventure</TripCard.Title>
+      <Badge variant="success">Active</Badge>
+    </TripCard.Header>
+  </TripCard>
+
+  // Using design tokens
+  <View style={{ padding: DesignTokens.spacing.md }}>
+    <Text style={DesignTokens.typography.xl}>Trip Details</Text>
+  </View>
+
+  // Using responsive utilities
+  <ResponsiveGrid>
+    {trips.map(trip => (
+      <TripCard key={trip.id} trip={trip} />
+    ))}
+  </ResponsiveGrid>
+
+  ---
+  Comprehensive theming and customization system complete! This provides:
+  - Full control over component styling
+  - Dynamic theme switching
+  - Platform-specific customizations
+  - Responsive design utilities
+  - Design token system
+  - Compound component patterns
+
+  Would you like to:
+
+  1. Proceed to next section - Continue with State Management
+  2. Explore animation patterns - Advanced animation customization
+  3. Review accessibility - Customization with a11y in mind
+  4. Discuss performance - Optimization strategies for theming
+
+  Select 1-4 or type your feedback:
+
+
+⏺ 8% context left until auto-compact · try /model sonnet[1m]
+
+> 4
+
+⏺ Performance Optimization Strategies for Theming
+
+  Let me detail the performance optimization strategies for the theming and customization system:
+
+  1. Theme Performance Optimization
+
+  Memoization Strategy
+
+  // hooks/useOptimizedTheme.ts
+  import { useMemo, useCallback } from 'react'
+  import { useColorScheme } from 'nativewind'
+  import { useMMKVObject } from 'react-native-mmkv'
+
+  interface ThemeCache {
+    colorScheme: 'light' | 'dark'
+    customColors: Record<string, string>
+    timestamp: number
+  }
+
+  export function useOptimizedTheme() {
+    const { colorScheme } = useColorScheme()
+    const [themeCache, setThemeCache] = useMMKVObject<ThemeCache>('theme-cache')
+
+    // Memoize expensive theme calculations
+    const computedTheme = useMemo(() => {
+      // Only recompute if colorScheme changes
+      if (themeCache?.colorScheme === colorScheme &&
+          Date.now() - themeCache.timestamp < 60000) { // 1 min cache
+        return themeCache.customColors
+      }
+
+      // Expensive theme computation
+      const newTheme = {
+        primary: colorScheme === 'dark' ? '#63B3ED' : '#2B6CB0',
+        secondary: colorScheme === 'dark' ? '#4FD1C5' : '#2C7A7B',
+        // ... more colors
+      }
+
+      // Cache the result
+      setThemeCache({
+        colorScheme,
+        customColors: newTheme,
+        timestamp: Date.now(),
+      })
+
+      return newTheme
+    }, [colorScheme, themeCache])
+
+    return computedTheme
+  }
+
+  Lazy Component Loading
+
+  // components/ui/LazyThemedComponent.tsx
+  import { lazy, Suspense } from 'react'
+  import { ActivityIndicator } from 'react-native'
+
+  // Lazy load heavy themed components
+  const HeavyThemedChart = lazy(() => import('./HeavyThemedChart'))
+
+  export function LazyChart({ data }) {
+    return (
+      <Suspense fallback={<ActivityIndicator />}>
+        <HeavyThemedChart data={data} />
+      </Suspense>
+    )
+  }
+
+  2. Style Sheet Optimization
+
+  Static Style Extraction
+
+  // utils/styleOptimizer.ts
+  import { StyleSheet } from 'react-native'
+
+  // Pre-compile static styles at build time
+  export const optimizedStyles = StyleSheet.create({
+    // Static styles that don't change with theme
+    container: {
+      flex: 1,
+      padding: 16,
+    },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    // Commonly used combinations
+    cardBase: {
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 16,
+    },
+  })
+
+  // Dynamic style factory with caching
+  const styleCache = new Map()
+
+  export function createDynamicStyles(theme: string) {
+    const cacheKey = `styles-${theme}`
+
+    if (styleCache.has(cacheKey)) {
+      return styleCache.get(cacheKey)
+    }
+
+    const styles = StyleSheet.create({
+      themed: {
+        backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+        borderColor: theme === 'dark' ? '#374151' : '#E5E7EB',
+      },
+    })
+
+    styleCache.set(cacheKey, styles)
+    return styles
+  }
+
+  Selective Re-rendering Prevention
+
+  // components/ui/OptimizedThemedButton.tsx
+  import React, { memo, useMemo } from 'react'
+  import { Pressable, Text } from 'react-native'
+  import { useColorScheme } from 'nativewind'
+
+  interface ButtonProps {
+    title: string
+    onPress: () => void
+    variant?: 'primary' | 'secondary'
+  }
+
+  export const OptimizedThemedButton = memo<ButtonProps>(({
+    title,
+    onPress,
+    variant = 'primary'
+  }) => {
+    const { colorScheme } = useColorScheme()
+
+    // Only recalculate styles when colorScheme or variant changes
+    const buttonStyles = useMemo(() => {
+      const isDark = colorScheme === 'dark'
+      const baseStyle = 'px-4 py-2 rounded-lg'
+
+      const variantStyles = {
+        primary: isDark
+          ? 'bg-blue-500 active:bg-blue-600'
+          : 'bg-blue-600 active:bg-blue-700',
+        secondary: isDark
+          ? 'bg-gray-600 active:bg-gray-700'
+          : 'bg-gray-200 active:bg-gray-300',
+      }
+
+      return `${baseStyle} ${variantStyles[variant]}`
+    }, [colorScheme, variant])
+
+    const textStyles = useMemo(() => {
+      const isDark = colorScheme === 'dark'
+      return variant === 'primary'
+        ? 'text-white font-semibold'
+        : isDark ? 'text-gray-100' : 'text-gray-800'
+    }, [colorScheme, variant])
+
+    return (
+      <Pressable className={buttonStyles} onPress={onPress}>
+        <Text className={textStyles}>{title}</Text>
+      </Pressable>
+    )
+  }, (prevProps, nextProps) => {
+    // Custom comparison for memo
+    return prevProps.title === nextProps.title &&
+           prevProps.variant === nextProps.variant
+  })
+
+  OptimizedThemedButton.displayName = 'OptimizedThemedButton'
+
+  3. Bundle Size Optimization
+
+  Tree-Shaking Configuration
+
+  // metro.config.js
+  const { getDefaultConfig } = require('expo/metro-config')
+
+  const config = getDefaultConfig(__dirname)
+
+  config.transformer = {
+    ...config.transformer,
+    minifierConfig: {
+      keep_fnames: false,
+      mangle: {
+        keep_fnames: false,
+      },
+      output: {
+        ascii_only: true,
+        quote_style: 3,
+        wrap_iife: true,
+      },
+      sourceMap: {
+        includeSources: false,
+      },
+      toplevel: false,
+      compress: {
+        reduce_funcs: true,
+        reduce_vars: true,
+        keep_classnames: false,
+        drop_console: true, // Remove console logs in production
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info'], // Remove specific functions
+      },
+    },
+  }
+
+  module.exports = config
+
+  Dynamic Import for Theme Variants
+
+  // utils/themeLoader.ts
+  export async function loadThemeVariant(variant: 'corporate' | 'playful' | 'minimal') {
+    switch (variant) {
+      case 'corporate':
+        return import('../themes/corporate')
+      case 'playful':
+        return import('../themes/playful')
+      case 'minimal':
+        return import('../themes/minimal')
+      default:
+        return import('../themes/default')
+    }
+  }
+
+  // Usage
+  const [theme, setTheme] = useState(null)
+
+  useEffect(() => {
+    loadThemeVariant('corporate').then(module => {
+      setTheme(module.default)
+    })
+  }, [])
+
+  4. Runtime Performance Monitoring
+
+  Theme Performance Metrics
+
+  // utils/performanceMonitor.ts
+  import { PerformanceObserver, performance } from 'react-native-performance'
+
+  export class ThemePerformanceMonitor {
+    private measurements: Map<string, number[]> = new Map()
+
+    startMeasure(name: string) {
+      performance.mark(`${name}-start`)
+    }
+
+    endMeasure(name: string) {
+      performance.mark(`${name}-end`)
+      performance.measure(name, `${name}-start`, `${name}-end`)
+
+      const entry = performance.getEntriesByName(name)[0]
+      if (entry) {
+        const current = this.measurements.get(name) || []
+        current.push(entry.duration)
+        this.measurements.set(name, current)
+
+        // Alert if theme switch takes too long
+        if (name === 'theme-switch' && entry.duration > 100) {
+          console.warn(`Theme switch took ${entry.duration}ms`)
+        }
+      }
+    }
+
+    getAverageTime(name: string): number {
+      const times = this.measurements.get(name) || []
+      return times.reduce((a, b) => a + b, 0) / times.length
+    }
+
+    reportMetrics() {
+      const report = {}
+      this.measurements.forEach((times, name) => {
+        report[name] = {
+          average: this.getAverageTime(name),
+          min: Math.min(...times),
+          max: Math.max(...times),
+          count: times.length,
+        }
+      })
+      return report
+    }
+  }
+
+  // Usage in theme hook
+  export function useMonitoredTheme() {
+    const monitor = useRef(new ThemePerformanceMonitor())
+    const { colorScheme, setColorScheme } = useColorScheme()
+
+    const switchTheme = useCallback((newScheme: 'light' | 'dark') => {
+      monitor.current.startMeasure('theme-switch')
+      setColorScheme(newScheme)
+      monitor.current.endMeasure('theme-switch')
+    }, [setColorScheme])
+
+    return { colorScheme, switchTheme, metrics: monitor.current.reportMetrics() }
+  }
+
+  5. Accessibility Performance
+
+  Reduced Motion Support
+
+  // hooks/useReducedMotion.ts
+  import { useReducedMotion as useRNReducedMotion } from 'react-native-reanimated'
+  import { AccessibilityInfo } from 'react-native'
+  import { useEffect, useState } from 'react'
+
+  export function useAccessibleTheme() {
+    const prefersReducedMotion = useRNReducedMotion()
+    const [screenReaderEnabled, setScreenReaderEnabled] = useState(false)
+
+    useEffect(() => {
+      AccessibilityInfo.isScreenReaderEnabled().then(setScreenReaderEnabled)
+
+      const subscription = AccessibilityInfo.addEventListener(
+        'screenReaderChanged',
+        setScreenReaderEnabled
+      )
+
+      return () => subscription?.remove()
+    }, [])
+
+    // Adjust theme animations based on accessibility preferences
+    const animationConfig = useMemo(() => ({
+      duration: prefersReducedMotion ? 0 : 300,
+      useNativeDriver: !screenReaderEnabled, // Disable for screen readers
+      skipAnimation: prefersReducedMotion || screenReaderEnabled,
+    }), [prefersReducedMotion, screenReaderEnabled])
+
+    return { animationConfig, prefersReducedMotion, screenReaderEnabled }
+  }
+
+  6. Memory Management
+
+  Theme Asset Cleanup
+
+  // utils/themeAssetManager.ts
+  class ThemeAssetManager {
+    private loadedAssets: Map<string, any> = new Map()
+    private assetRefs: Map<string, number> = new Map()
+
+    loadAsset(key: string, loader: () => Promise<any>) {
+      const refCount = this.assetRefs.get(key) || 0
+      this.assetRefs.set(key, refCount + 1)
+
+      if (this.loadedAssets.has(key)) {
+        return Promise.resolve(this.loadedAssets.get(key))
+      }
+
+      return loader().then(asset => {
+        this.loadedAssets.set(key, asset)
+        return asset
+      })
+    }
+
+    releaseAsset(key: string) {
+      const refCount = this.assetRefs.get(key) || 0
+      if (refCount <= 1) {
+        this.loadedAssets.delete(key)
+        this.assetRefs.delete(key)
+        // Trigger garbage collection hint
+        if (global.gc) global.gc()
+      } else {
+        this.assetRefs.set(key, refCount - 1)
+      }
+    }
+
+    clearUnusedAssets() {
+      this.assetRefs.forEach((count, key) => {
+        if (count === 0) {
+          this.loadedAssets.delete(key)
+          this.assetRefs.delete(key)
+        }
+      })
+    }
+  }
+
+  export const themeAssetManager = new ThemeAssetManager()
+
+  Performance Best Practices Summary
+
+  // config/performance-guidelines.ts
+  export const ThemePerformanceGuidelines = {
+    // Target metrics
+    metrics: {
+      themeSwitch: '<50ms',
+      componentRender: '<16ms',
+      styleComputation: '<5ms',
+      bundleSize: '<100KB for theme code',
+    },
+
+    // Do's
+    best_practices: [
+      'Use memo and useMemo for expensive computations',
+      'Pre-compile static styles with StyleSheet.create',
+      'Lazy load heavy themed components',
+      'Cache computed theme values',
+      'Use CSS variables for dynamic values',
+      'Implement proper cleanup in useEffect',
+    ],
+
+    // Don'ts
+    avoid: [
+      'Inline style objects in render',
+      'Complex calculations in render method',
+      'Unnecessary theme context consumers',
+      'Loading all theme variants upfront',
+      'Deep nesting of theme providers',
+    ],
+
+    // Monitoring
+    monitoring: [
+      'Track theme switch performance',
+      'Monitor bundle size growth',
+      'Profile component re-renders',
+      'Measure memory usage',
+      'Track accessibility metrics',
+    ],
+  }
+
+  ---
+
+⏺ Performance optimization strategies complete! Now let's continue with the remaining sections.
+
+  Section 5: State Management
+
+  Store Structure
+
+  store/
+  ├── auth.store.ts         # Authentication state
+  ├── trips.store.ts        # Trip management state
+  ├── expenses.store.ts     # Expense tracking state
+  ├── offline.store.ts      # Offline queue state
+  ├── ui.store.ts          # UI state (modals, theme)
+  └── app.store.ts         # Global app state
+
+  State Management Template
+
+  // store/trips.store.ts
+  import { create } from 'zustand'
+  import { persist, createJSONStorage } from 'zustand/middleware'
+  import { immer } from 'zustand/middleware/immer'
+  import { MMKV } from 'react-native-mmkv'
+
+  const storage = new MMKV()
+
+  const zustandStorage = {
+    getItem: (name: string) => {
+      const value = storage.getString(name)
+      return value ? JSON.parse(value) : null
+    },
+    setItem: (name: string, value: any) => {
+      storage.set(name, JSON.stringify(value))
+    },
+    removeItem: (name: string) => {
+      storage.delete(name)
+    },
+  }
+
+  interface Trip {
+    id: string
+    name: string
+    destination: string
+    startDate: string
+    endDate: string
+    participants: string[]
+    status: 'planned' | 'active' | 'completed'
+    offline?: boolean
+    syncStatus?: 'pending' | 'syncing' | 'synced' | 'error'
+  }
+
+  interface TripsState {
+    trips: Trip[]
+    currentTrip: Trip | null
+    isLoading: boolean
+    error: string | null
+
+    // Actions
+    setTrips: (trips: Trip[]) => void
+    addTrip: (trip: Trip) => void
+    updateTrip: (id: string, updates: Partial<Trip>) => void
+    deleteTrip: (id: string) => void
+    setCurrentTrip: (trip: Trip | null) => void
+    markForSync: (id: string) => void
+  }
+
+  export const useTripsStore = create<TripsState>()(
+    persist(
+      immer((set) => ({
+        trips: [],
+        currentTrip: null,
+        isLoading: false,
+        error: null,
+
+        setTrips: (trips) =>
+          set((state) => {
+            state.trips = trips
+          }),
+
+        addTrip: (trip) =>
+          set((state) => {
+            state.trips.push({
+              ...trip,
+              offline: true,
+              syncStatus: 'pending',
+            })
+          }),
+
+        updateTrip: (id, updates) =>
+          set((state) => {
+            const index = state.trips.findIndex((t) => t.id === id)
+            if (index !== -1) {
+              state.trips[index] = {
+                ...state.trips[index],
+                ...updates,
+                syncStatus: 'pending',
+              }
+            }
+          }),
+
+        deleteTrip: (id) =>
+          set((state) => {
+            state.trips = state.trips.filter((t) => t.id !== id)
+          }),
+
+        setCurrentTrip: (trip) =>
+          set((state) => {
+            state.currentTrip = trip
+          }),
+
+        markForSync: (id) =>
+          set((state) => {
+            const trip = state.trips.find((t) => t.id === id)
+            if (trip) {
+              trip.syncStatus = 'pending'
+            }
+          }),
+      })),
+      {
+        name: 'trips-storage',
+        storage: createJSONStorage(() => zustandStorage),
+        partialize: (state) => ({
+          trips: state.trips,
+          currentTrip: state.currentTrip,
+        }),
+      }
+    )
+  )
+
+  // Selectors
+  export const selectActiveTrips = (state: TripsState) =>
+    state.trips.filter((t) => t.status === 'active')
+
+  export const selectTripById = (id: string) => (state: TripsState) =>
+    state.trips.find((t) => t.id === id)
+
+  export const selectPendingSyncTrips = (state: TripsState) =>
+    state.trips.filter((t) => t.syncStatus === 'pending')
+
+  ---
+  Would you like to:
+
+  1. Continue with remaining sections - API Integration, Testing, etc.
+  2. Save progress to file - Export the document so far
+  3. Review what's complete - See all completed sections
+  4. Focus on specific section - Deep dive into any section
+
+  Select 1-4 or type your feedback:
+
+> 3
+
+⏺ Frontend Architecture Document - Review of Completed Sections
+
+  Let me provide a comprehensive review of all the sections we've completed so far:
+
+⏺ ---
+  Trip Sync v2 Frontend Architecture Document - Completed Sections Review
+
+  ✅ Completed Sections
+
+  1. Template and Framework Selection ✅
+
+  - Status: Complete
+  - Key Decisions:
+    - Using Expo SDK 53 with React Native 0.79.4
+    - React 19.0.0 included
+    - Expo managed workflow for faster development
+  - Change Log: Documented
+
+  2. Frontend Tech Stack ✅
+
+  - Status: Complete with version verification
+  - Key Components:
+    - Framework: React Native 0.79.4
+    - UI Library: React 19.0.0
+    - State Management: Zustand 5.0.5 + TanStack Query 5.85.x
+    - Routing: Expo Router 5.1.0
+    - Build Tool: Expo SDK 53
+    - Styling: NativeWind 4.1.23
+    - Component Library: React Native Reusables (shadcn/ui pattern)
+    - Testing: Jest + @testing-library/react-native + Maestro + MSW
+    - Forms: React Hook Form 7.60.0
+    - Security: expo-crypto + expo-local-auth
+    - Math: decimal.js 10.x
+    - Storage: React Native MMKV 3.1.0
+    - Backend: Supabase
+  - Package Manager: PNPM (with migration guide)
+
+  3. Project Structure ✅
+
+  - Status: Complete with enhancements
+  - Structure Type: Feature-based architecture with vertical slicing
+  - Key Folders:
+    - app/ - Expo Router file-based routing
+    - features/ - Feature modules (auth, trips, expenses, offline)
+    - components/ - Reusable components with RN Reusables primitives
+    - config/ - Centralized configuration
+    - i18n/ - Internationalization with locale support
+    - services/ - API and business logic
+    - store/ - Zustand state management
+    - hooks/ - Custom React hooks
+    - .maestro/ - E2E test flows
+
+  4. Component Standards ✅
+
+  - Status: Complete with React Native Reusables integration
+  - Component Structure:
+    - Primitives: 30+ components from RN Reusables
+    - UI Components: Extended/composed components
+    - Forms: React Hook Form integrated components
+    - Domain Components: Feature-specific components
+  - Naming Conventions: PascalCase for components, camelCase for files
+  - Component Template: TypeScript with proper types
+
+  5. Theming and Customization ✅
+
+  - Status: Complete with performance optimization
+  - Key Features:
+    - CSS Variables for dynamic theming
+    - Light/Dark mode support
+    - Platform-specific customizations
+    - Design token system
+    - Variant system with CVA
+    - Compound components pattern
+    - Responsive utilities
+  - Performance Optimizations:
+    - Memoization strategies
+    - Style sheet optimization
+    - Bundle size optimization
+    - Runtime performance monitoring
+    - Accessibility performance
+    - Memory management
+
+  6. State Management ✅
+
+  - Status: Complete
+  - Store Structure:
+    - Zustand for local state
+    - TanStack Query for server state
+    - MMKV for persistence
+    - Immer for immutable updates
+  - State Template: Provided with TypeScript types
+  - Offline Support: Built into store structure
+
+  ---
+  📋 Sections Still To Complete
+
+  7. API Integration 🔄
+
+  - Service templates
+  - API client configuration
+  - Error handling patterns
+  - Offline queue management
+
+  8. Routing 🔄
+
+  - Route configuration
+  - Protected routes
+  - Deep linking
+  - Navigation guards
+
+  9. Styling Guidelines 🔄
+
+  - NativeWind patterns
+  - Global theme variables
+  - Responsive design approach
+
+  10. Testing Requirements 🔄
+
+  - Component test templates
+  - E2E test patterns with Maestro
+  - MSW mock setup
+  - Coverage goals
+
+  11. Environment Configuration 🔄
+
+  - Environment variables
+  - Build configurations
+  - Feature flags
+
+  12. Frontend Developer Standards 🔄
+
+  - Critical coding rules
+  - Quick reference guide
+  - Common patterns
+  - Error prevention
+
+  ---
+  Summary of Key Architectural Decisions
+
+  ✅ What We've Established
+
+  1. Modern Tech Stack: Latest stable versions with Expo SDK 53
+  2. Component Library: React Native Reusables for shadcn/ui-like DX
+  3. Feature-Based Architecture: Scalable vertical slicing
+  4. Offline-First: Built into state management
+  5. Type Safety: TypeScript throughout
+  6. Testing Strategy: Unit + Integration + E2E
+  7. Performance Focus: Optimized theming and state management
+  8. i18n Ready: Multi-language support structure
+  9. PNPM: Modern package management
+
+  💡 Key Innovations
+
+  1. React Native Reusables Integration: First-class shadcn/ui experience
+  2. Feature Folders: Self-contained feature modules
+  3. Performance Monitoring: Built-in theme performance tracking
+  4. Compound Components: Advanced composition patterns
+  5. Offline Queue: Sophisticated sync management
+
+  📊 Coverage Status
+
+  Total Sections: 12
+  Completed: 6 (50%)
+  In Progress: 0
+  Remaining: 6 (50%)
+
+  Estimated Completion Time:
+  - API Integration: 15 min
+  - Routing: 10 min
+  - Styling Guidelines: 10 min
+  - Testing Requirements: 15 min
+  - Environment Config: 10 min
+  - Developer Standards: 15 min
+  Total: ~75 minutes
+
+  ---
+
+⏺ Review complete! We've made excellent progress with 6/12 sections fully documented. Would you like to:
+
+  1. Continue with remaining sections - Complete API Integration next
+  2. Export current document - Save what we have so far
+  3. Quick complete all remaining - Rapidly finish all sections
+  4. Focus on critical sections only - Just API + Testing + Standards
+
+  Select 1-4 or type your preference:
+
+> 1
+
+⏺ Section 7: API Integration
+
+  Let me define the API service patterns for the Trip Sync v2 application:
+
+  Service Template
+
+  // services/api/base.service.ts
+  import { createClient } from '@supabase/supabase-js'
+  import { MMKV } from 'react-native-mmkv'
+  import NetInfo from '@react-native-community/netinfo'
+  import { useOfflineStore } from '@/store/offline.store'
+
+  const storage = new MMKV()
+
+  // Supabase client setup
+  const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!
+  const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!
+
+  export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      storage: {
+        getItem: (key: string) => storage.getString(key) || null,
+        setItem: (key: string, value: string) => storage.set(key, value),
+        removeItem: (key: string) => storage.delete(key),
+      },
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: false,
+    },
+  })
+
+  // Base API Service Class
+  export abstract class BaseAPIService {
+    protected tableName: string
+
+    constructor(tableName: string) {
+      this.tableName = tableName
+    }
+
+    // Check network connectivity
+    protected async isOnline(): Promise<boolean> {
+      const netInfo = await NetInfo.fetch()
+      return netInfo.isConnected ?? false
+    }
+
+    // Queue operation for offline execution
+    protected queueOfflineOperation(operation: any) {
+      const { addToQueue } = useOfflineStore.getState()
+      addToQueue({
+        id: `${Date.now()}-${Math.random()}`,
+        type: operation.type,
+        payload: operation.payload,
+        timestamp: Date.now(),
+        retryCount: 0,
+        status: 'pending',
+      })
+    }
+
+    // Generic error handler
+    protected handleError(error: any, context: string) {
+      console.error(`[${context}] Error:`, error)
+
+      // Check if it's a network error
+      if (error.message?.includes('network') || error.code === 'NETWORK_ERROR') {
+        return {
+          error: 'Network error. Operation saved for offline sync.',
+          offline: true,
+        }
+      }
+
+      // Check for auth errors
+      if (error.status === 401) {
+        // Trigger re-authentication
+        return {
+          error: 'Authentication required',
+          requiresAuth: true,
+        }
+      }
+
+      return {
+        error: error.message || 'An unexpected error occurred',
+        details: error,
+      }
+    }
+  }
+
+  API Client Configuration
+
+  // services/api/trips.service.ts
+  import { BaseAPIService } from './base.service'
+  import { supabase } from './base.service'
+  import { Trip, TripCreate, TripUpdate } from '@/types/api.types'
+  import { useTripsStore } from '@/store/trips.store'
+
+  class TripsService extends BaseAPIService {
+    constructor() {
+      super('trips')
+    }
+
+    async getTrips(): Promise<{ data?: Trip[], error?: any }> {
+      try {
+        // Check if online
+        const online = await this.isOnline()
+
+        if (!online) {
+          // Return cached data
+          const cachedTrips = useTripsStore.getState().trips
+          return { data: cachedTrips }
+        }
+
+        // Fetch from Supabase
+        const { data, error } = await supabase
+          .from(this.tableName)
+          .select(`
+            *,
+            participants:trip_participants(
+              user:users(id, name, avatar_url)
+            ),
+            expenses:trip_expenses(
+              id, amount, currency, category
+            )
+          `)
+          .order('created_at', { ascending: false })
+
+        if (error) throw error
+
+        // Update local cache
+        useTripsStore.getState().setTrips(data)
+
+        return { data }
+      } catch (error) {
+        return { error: this.handleError(error, 'getTrips') }
+      }
+    }
+
+    async createTrip(trip: TripCreate): Promise<{ data?: Trip, error?: any }> {
+      try {
+        const online = await this.isOnline()
+
+        if (!online) {
+          // Queue for offline sync
+          const offlineTrip = {
+            ...trip,
+            id: `offline-${Date.now()}`,
+            offline: true,
+            syncStatus: 'pending',
+          }
+
+          this.queueOfflineOperation({
+            type: 'CREATE_TRIP',
+            payload: trip,
+          })
+
+          // Add to local store
+          useTripsStore.getState().addTrip(offlineTrip as Trip)
+
+          return { data: offlineTrip as Trip }
+        }
+
+        // Create in Supabase
+        const { data, error } = await supabase
+          .from(this.tableName)
+          .insert(trip)
+          .select()
+          .single()
+
+        if (error) throw error
+
+        // Add to local store
+        useTripsStore.getState().addTrip(data)
+
+        return { data }
+      } catch (error) {
+        return { error: this.handleError(error, 'createTrip') }
+      }
+    }
+
+    async updateTrip(id: string, updates: TripUpdate): Promise<{ data?: Trip, error?: any }> {
+      try {
+        const online = await this.isOnline()
+
+        if (!online) {
+          // Queue for offline sync
+          this.queueOfflineOperation({
+            type: 'UPDATE_TRIP',
+            payload: { id, updates },
+          })
+
+          // Update local store
+          useTripsStore.getState().updateTrip(id, {
+            ...updates,
+            syncStatus: 'pending',
+          })
+
+          return { data: { id, ...updates } as Trip }
+        }
+
+        // Update in Supabase
+        const { data, error } = await supabase
+          .from(this.tableName)
+          .update(updates)
+          .eq('id', id)
+          .select()
+          .single()
+
+        if (error) throw error
+
+        // Update local store
+        useTripsStore.getState().updateTrip(id, data)
+
+        return { data }
+      } catch (error) {
+        return { error: this.handleError(error, 'updateTrip') }
+      }
+    }
+
+    async deleteTrip(id: string): Promise<{ error?: any }> {
+      try {
+        const online = await this.isOnline()
+
+        if (!online) {
+          // Queue for offline sync
+          this.queueOfflineOperation({
+            type: 'DELETE_TRIP',
+            payload: { id },
+          })
+
+          // Mark as deleted in local store
+          useTripsStore.getState().updateTrip(id, {
+            deleted: true,
+            syncStatus: 'pending',
+          })
+
+          return {}
+        }
+
+        // Delete from Supabase
+        const { error } = await supabase
+          .from(this.tableName)
+          .delete()
+          .eq('id', id)
+
+        if (error) throw error
+
+        // Remove from local store
+        useTripsStore.getState().deleteTrip(id)
+
+        return {}
+      } catch (error) {
+        return { error: this.handleError(error, 'deleteTrip') }
+      }
+    }
+
+    // Real-time subscription
+    subscribeToTrips(userId: string) {
+      return supabase
+        .channel('trips-channel')
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: this.tableName,
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            console.log('Real-time update:', payload)
+
+            if (payload.eventType === 'INSERT') {
+              useTripsStore.getState().addTrip(payload.new as Trip)
+            } else if (payload.eventType === 'UPDATE') {
+              useTripsStore.getState().updateTrip(payload.new.id, payload.new)
+            } else if (payload.eventType === 'DELETE') {
+              useTripsStore.getState().deleteTrip(payload.old.id)
+            }
+          }
+        )
+        .subscribe()
+    }
+  }
+
+  export const tripsService = new TripsService()
+
+  Hook Integration with TanStack Query
+
+  // hooks/api/useTrips.ts
+  import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+  import { tripsService } from '@/services/api/trips.service'
+  import { TripCreate, TripUpdate } from '@/types/api.types'
+  import { useEffect } from 'react'
+  import { useAuth } from './useAuth'
+
+  export function useTrips() {
+    const queryClient = useQueryClient()
+    const { user } = useAuth()
+
+    // Fetch trips
+    const query = useQuery({
+      queryKey: ['trips'],
+      queryFn: () => tripsService.getTrips(),
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+      retry: (failureCount, error: any) => {
+        // Don't retry if offline
+        if (error?.offline) return false
+        return failureCount < 3
+      },
+    })
+
+    // Subscribe to real-time updates
+    useEffect(() => {
+      if (!user?.id) return
+
+      const subscription = tripsService.subscribeToTrips(user.id)
+
+      return () => {
+        subscription.unsubscribe()
+      }
+    }, [user?.id])
+
+    // Create trip mutation
+    const createMutation = useMutation({
+      mutationFn: (trip: TripCreate) => tripsService.createTrip(trip),
+      onSuccess: (result) => {
+        if (!result.error) {
+          queryClient.invalidateQueries({ queryKey: ['trips'] })
+        }
+      },
+      onError: (error) => {
+        console.error('Create trip error:', error)
+      },
+    })
+
+    // Update trip mutation
+    const updateMutation = useMutation({
+      mutationFn: ({ id, updates }: { id: string; updates: TripUpdate }) =>
+        tripsService.updateTrip(id, updates),
+      onSuccess: (result) => {
+        if (!result.error) {
+          queryClient.invalidateQueries({ queryKey: ['trips'] })
+        }
+      },
+    })
+
+    // Delete trip mutation
+    const deleteMutation = useMutation({
+      mutationFn: (id: string) => tripsService.deleteTrip(id),
+      onSuccess: (result) => {
+        if (!result.error) {
+          queryClient.invalidateQueries({ queryKey: ['trips'] })
+        }
+      },
+    })
+
+    return {
+      trips: query.data?.data || [],
+      isLoading: query.isLoading,
+      error: query.error || query.data?.error,
+      refetch: query.refetch,
+      createTrip: createMutation.mutate,
+      updateTrip: updateMutation.mutate,
+      deleteTrip: deleteMutation.mutate,
+      isCreating: createMutation.isPending,
+      isUpdating: updateMutation.isPending,
+      isDeleting: deleteMutation.isPending,
+    }
+  }
+
+  Offline Sync Service
+
+  // services/offline/sync.service.ts
+  import { useOfflineStore } from '@/store/offline.store'
+  import { tripsService } from '@/services/api/trips.service'
+  import NetInfo from '@react-native-community/netinfo'
+
+  export class SyncService {
+    private syncInProgress = false
+    private syncInterval: NodeJS.Timeout | null = null
+
+    // Start monitoring for sync opportunities
+    startSyncMonitoring() {
+      // Listen for network changes
+      NetInfo.addEventListener((state) => {
+        if (state.isConnected && !this.syncInProgress) {
+          this.syncPendingOperations()
+        }
+      })
+
+      // Check every 30 seconds
+      this.syncInterval = setInterval(() => {
+        this.syncPendingOperations()
+      }, 30000)
+    }
+
+    stopSyncMonitoring() {
+      if (this.syncInterval) {
+        clearInterval(this.syncInterval)
+        this.syncInterval = null
+      }
+    }
+
+    async syncPendingOperations() {
+      if (this.syncInProgress) return
+
+      const netInfo = await NetInfo.fetch()
+      if (!netInfo.isConnected) return
+
+      const { queue, updateQueueItem, removeFromQueue } = useOfflineStore.getState()
+      const pendingOps = queue.filter(op => op.status === 'pending')
+
+      if (pendingOps.length === 0) return
+
+      this.syncInProgress = true
+      console.log(`Starting sync of ${pendingOps.length} operations`)
+
+      for (const operation of pendingOps) {
+        try {
+          updateQueueItem(operation.id, { status: 'syncing' })
+
+          let result
+          switch (operation.type) {
+            case 'CREATE_TRIP':
+              result = await tripsService.createTrip(operation.payload)
+              break
+            case 'UPDATE_TRIP':
+              result = await tripsService.updateTrip(
+                operation.payload.id,
+                operation.payload.updates
+              )
+              break
+            case 'DELETE_TRIP':
+              result = await tripsService.deleteTrip(operation.payload.id)
+              break
+            // Add more operation types as needed
+          }
+
+          if (result?.error) {
+            throw result.error
+          }
+
+          // Success - remove from queue
+          removeFromQueue(operation.id)
+          console.log(`Synced operation: ${operation.type}`)
+        } catch (error) {
+          console.error(`Failed to sync operation:`, error)
+
+          // Update retry count
+          const newRetryCount = (operation.retryCount || 0) + 1
+
+          if (newRetryCount >= 3) {
+            // Max retries reached
+            updateQueueItem(operation.id, {
+              status: 'failed',
+              error: error.message,
+            })
+          } else {
+            // Will retry later
+            updateQueueItem(operation.id, {
+              status: 'pending',
+              retryCount: newRetryCount,
+            })
+          }
+        }
+      }
+
+      this.syncInProgress = false
+      console.log('Sync completed')
+    }
+  }
+
+  export const syncService = new SyncService()
+
+  Error Handling Patterns
+
+  // utils/apiErrors.ts
+  export class APIError extends Error {
+    constructor(
+      message: string,
+      public code: string,
+      public status?: number,
+      public details?: any
+    ) {
+      super(message)
+      this.name = 'APIError'
+    }
+  }
+
+  export const errorMessages = {
+    NETWORK_ERROR: 'No internet connection. Your changes will be synced when online.',
+    AUTH_ERROR: 'Please sign in to continue.',
+    NOT_FOUND: 'The requested item was not found.',
+    PERMISSION_DENIED: 'You do not have permission to perform this action.',
+    SERVER_ERROR: 'Something went wrong. Please try again later.',
+    VALIDATION_ERROR: 'Please check your input and try again.',
+  }
+
+  export function getErrorMessage(error: any): string {
+    if (error instanceof APIError) {
+      return errorMessages[error.code] || error.message
+    }
+
+    if (error?.offline) {
+      return errorMessages.NETWORK_ERROR
+    }
+
+    if (error?.requiresAuth) {
+      return errorMessages.AUTH_ERROR
+    }
+
+    if (error?.status === 404) {
+      return errorMessages.NOT_FOUND
+    }
+
+    if (error?.status === 403) {
+      return errorMessages.PERMISSION_DENIED
+    }
+
+    if (error?.status >= 500) {
+      return errorMessages.SERVER_ERROR
+    }
+
+    return error?.message || errorMessages.SERVER_ERROR
+  }
+
+  Rationale for API Architecture
+
+  Key Decisions:
+  - Offline-First: Every operation works offline with queue management
+  - Real-time Updates: Supabase subscriptions for live collaboration
+  - Error Recovery: Automatic retry with exponential backoff
+  - Type Safety: Full TypeScript coverage for API operations
+  - Optimistic Updates: UI updates immediately, syncs in background
+
+  Trade-offs Made:
+  - Complexity vs Reliability: More complex but ensures offline functionality
+  - Storage vs Performance: Caches data locally for speed
+  - Real-time vs Battery: Subscriptions may impact battery life
+
+  ---
+  This section requires your input for elicitation.
+
+  Select an option (1-9) to proceed:
+
+  1. Proceed to next section - Continue with Routing
+  2. Expand or Contract for Audience - Adjust detail level
+  3. Explain Reasoning (CoT Step-by-Step) - Deep dive into API decisions
+  4. Critique and Refine - Review for improvements
+  5. Analyze Logical Flow and Dependencies - Examine service relationships
+  6. Identify Potential Risks and Unforeseen Issues - Explore API risks
+  7. Challenge from Critical Perspective - Apply YAGNI to API design
+  8. Tree of Thoughts Deep Dive - Explore alternative API patterns
+  9. Agile Team Perspective Shift - View from different team roles
+
+  Select 1-9 or just type your question/feedback:
+
+> 2,3,4
+
+⏺ I'll execute multiple elicitation methods for the API Integration section:
+
+  2. Expand or Contract for Audience
+
+  Expanded Version for Junior Developers
+
+  Let me provide a more detailed explanation with learning points:
+
+  // services/api/trips.service.ts - EXPANDED WITH EXPLANATIONS
+  import { BaseAPIService } from './base.service'
+  import { supabase } from './base.service'
+
+  class TripsService extends BaseAPIService {
+    constructor() {
+      super('trips')
+    }
+
+    /**
+     * GET ALL TRIPS - How it works:
+     * 1. First, we check if the device has internet
+     * 2. If NO internet → return cached data from local storage
+     * 3. If YES internet → fetch fresh data from server
+     * 4. Always update local cache after successful fetch
+     *
+     * This pattern ensures the app ALWAYS shows data, even offline!
+     */
+    async getTrips(): Promise<{ data?: Trip[], error?: any }> {
+      try {
+        // STEP 1: Check internet connection
+        // NetInfo tells us if WiFi/Cellular is available
+        const online = await this.isOnline()
+
+        if (!online) {
+          // OFFLINE PATH: Use what we have stored locally
+          console.log('📵 Offline - using cached trips')
+          const cachedTrips = useTripsStore.getState().trips
+          return { data: cachedTrips }
+        }
+
+        // ONLINE PATH: Get fresh data from Supabase
+        console.log('📶 Online - fetching fresh trips')
+
+        // This is a SQL query builder pattern:
+        // - from('trips') → SELECT * FROM trips
+        // - select('*') → get all columns
+        // - select('participants:trip_participants(...)') → JOIN with participants
+        const { data, error } = await supabase
+          .from(this.tableName)
+          .select(`
+            *,
+            participants:trip_participants(
+              user:users(id, name, avatar_url)
+            ),
+            expenses:trip_expenses(
+              id, amount, currency, category
+            )
+          `)
+          .order('created_at', { ascending: false })
+
+        // ALWAYS check for errors after API calls!
+        if (error) {
+          console.error('❌ Supabase error:', error)
+          throw error
+        }
+
+        // SUCCESS: Save to local cache for offline access
+        console.log('✅ Trips fetched, updating cache')
+        useTripsStore.getState().setTrips(data)
+
+        return { data }
+      } catch (error) {
+        // ERROR HANDLING: Convert all errors to consistent format
+        return { error: this.handleError(error, 'getTrips') }
+      }
+    }
+
+    /**
+     * CREATE TRIP - Offline-first approach:
+     *
+     * OFFLINE:
+     * 1. Generate temporary ID (offline-timestamp)
+     * 2. Save to queue for later sync
+     * 3. Add to local store immediately (optimistic update)
+     *
+     * ONLINE:
+     * 1. Send to server immediately
+     * 2. Get real ID from server
+     * 3. Update local store with server response
+     */
+    async createTrip(trip: TripCreate): Promise<{ data?: Trip, error?: any }> {
+      try {
+        const online = await this.isOnline()
+
+        if (!online) {
+          // OFFLINE: Create a temporary trip locally
+          console.log('📵 Creating trip offline')
+
+          // Generate unique temporary ID
+          // Format: "offline-1234567890" (using timestamp)
+          const offlineTrip = {
+            ...trip,
+            id: `offline-${Date.now()}`,
+            offline: true, // Flag to show sync icon in UI
+            syncStatus: 'pending', // Will sync when online
+          }
+
+          // Add to sync queue - will process when online
+          this.queueOfflineOperation({
+            type: 'CREATE_TRIP',
+            payload: trip,
+          })
+
+          // Update UI immediately (optimistic update)
+          useTripsStore.getState().addTrip(offlineTrip as Trip)
+
+          return { data: offlineTrip as Trip }
+        }
+
+        // ONLINE: Create on server
+        console.log('📶 Creating trip online')
+        const { data, error } = await supabase
+          .from(this.tableName)
+          .insert(trip) // INSERT INTO trips VALUES (...)
+          .select() // Return the created record
+          .single() // Expect one result
+
+        if (error) throw error
+
+        // Update local store with server response
+        useTripsStore.getState().addTrip(data)
+
+        return { data }
+      } catch (error) {
+        return { error: this.handleError(error, 'createTrip') }
+      }
+    }
+  }
+
+  Simplified Version for Senior Developers
+
+  // services/api/trips.service.ts - CONCISE VERSION
+  class TripsService extends BaseAPIService {
+    async getTrips() {
+      const online = await this.isOnline()
+      if (!online) return { data: useTripsStore.getState().trips }
+
+      const { data, error } = await supabase
+        .from(this.tableName)
+        .select('*, participants:trip_participants(user:users(*)), expenses:trip_expenses(*)')
+        .order('created_at', { ascending: false })
+
+      if (error) throw error
+      useTripsStore.getState().setTrips(data)
+      return { data }
+    }
+
+    async createTrip(trip: TripCreate) {
+      const online = await this.isOnline()
+
+      if (!online) {
+        const offlineTrip = { ...trip, id: `offline-${Date.now()}`, offline: true }
+        this.queueOfflineOperation({ type: 'CREATE_TRIP', payload: trip })
+        useTripsStore.getState().addTrip(offlineTrip)
+        return { data: offlineTrip }
+      }
+
+      const { data, error } = await supabase.from(this.tableName).insert(trip).select().single()
+      if (error) throw error
+      useTripsStore.getState().addTrip(data)
+      return { data }
+    }
+  }
+
+  ---
+  3. Explain Reasoning (CoT Step-by-Step)
+
+  Chain of Thought: Why This API Architecture?
+
+  Step 1: Problem Analysis
+  - Mobile apps need to work offline (airports, foreign countries, poor connectivity)
+  - Multiple users need real-time collaboration on trips
+  - Data consistency between local and server state is critical
+  - Network requests are expensive (battery, data usage)
+
+  Step 2: Solution Requirements
+  - Must work 100% offline
+  - Must sync automatically when online
+  - Must handle conflicts gracefully
+  - Must provide real-time updates
+  - Must be type-safe
+
+  Step 3: Architecture Decision Process
+
+  Question: How to handle offline operations?
+  ├── Option A: Block all operations when offline
+  │   └── ❌ Poor UX, app becomes useless offline
+  ├── Option B: Cache reads, block writes
+  │   └── ❌ Better but still limiting
+  └── Option C: Full offline with sync queue ✅
+      ├── ✅ App fully functional offline
+      ├── ✅ Automatic sync when online
+      └── ✅ Better user experience
+
+  Question: How to manage state?
+  ├── Option A: Server state only
+  │   └── ❌ Requires constant connection
+  ├── Option B: Local state only
+  │   └── ❌ No collaboration, no backup
+  └── Option C: Hybrid with sync ✅
+      ├── ✅ Local for speed
+      ├── ✅ Server for persistence
+      └── ✅ Sync for consistency
+
+  Question: How to handle errors?
+  ├── Option A: Crash on error
+  │   └── ❌ Poor UX
+  ├── Option B: Silent failure
+  │   └── ❌ User confusion
+  └── Option C: Graceful degradation ✅
+      ├── ✅ Queue for retry
+      ├── ✅ User notification
+      └── ✅ Automatic recovery
+
+  Step 4: Implementation Strategy
+
+  1. Base Service Class: Provides common functionality
+    - Network detection
+    - Error handling
+    - Queue management
+  2. Service Layer: Business logic for each domain
+    - Trips, Expenses, Auth
+    - Encapsulates Supabase calls
+    - Manages offline queue
+  3. Hook Layer: React integration
+    - TanStack Query for caching
+    - Optimistic updates
+    - Real-time subscriptions
+  4. Sync Service: Background synchronization
+    - Monitors network changes
+    - Processes queue
+    - Handles conflicts
+
+  Step 5: Why These Specific Technologies?
+
+  - Supabase: Real-time, PostgreSQL, Auth built-in
+  - TanStack Query: Best-in-class caching, offline support
+  - MMKV: Fastest React Native storage
+  - NetInfo: Reliable network detection
+
+  ---
+  4. Critique and Refine
+
+  Critical Review of API Architecture
+
+  Identified Issues & Refinements:
+
+  Issue 1: Conflict Resolution Missing
+
+  Current Problem: No handling for when offline and online edits conflict
+
+  Refinement:
+  // services/offline/conflict-resolver.ts
+  interface ConflictResolution {
+    strategy: 'client-wins' | 'server-wins' | 'merge' | 'ask-user'
+    resolver?: (local: any, remote: any) => any
+  }
+
+  class ConflictResolver {
+    async resolveConflict(
+      local: any,
+      remote: any,
+      strategy: ConflictResolution
+    ) {
+      switch (strategy.strategy) {
+        case 'client-wins':
+          return local
+        case 'server-wins':
+          return remote
+        case 'merge':
+          return strategy.resolver?.(local, remote) || remote
+        case 'ask-user':
+          // Show UI for user to choose
+          return await this.promptUser(local, remote)
+      }
+    }
+
+    private async promptUser(local: any, remote: any) {
+      // Show modal with both versions
+      return new Promise((resolve) => {
+        // UI implementation
+      })
+    }
+  }
+
+  Issue 2: No Request Deduplication
+
+  Current Problem: Multiple components might request same data
+
+  Refinement:
+  // utils/requestDeduplicator.ts
+  class RequestDeduplicator {
+    private inFlightRequests = new Map<string, Promise<any>>()
+
+    async deduplicate<T>(
+      key: string,
+      requestFn: () => Promise<T>
+    ): Promise<T> {
+      // Check if request is already in flight
+      if (this.inFlightRequests.has(key)) {
+        return this.inFlightRequests.get(key)!
+      }
+
+      // Start new request
+      const promise = requestFn().finally(() => {
+        this.inFlightRequests.delete(key)
+      })
+
+      this.inFlightRequests.set(key, promise)
+      return promise
+    }
+  }
+
+  // Usage in service
+  async getTrips() {
+    return deduplicator.deduplicate('trips', async () => {
+      // Actual fetch logic
+    })
+  }
+
+  Issue 3: No Rate Limiting
+
+  Current Problem: Could overwhelm server with sync operations
+
+  Refinement:
+  // utils/rateLimiter.ts
+  class RateLimiter {
+    private queue: (() => Promise<any>)[] = []
+    private processing = false
+    private requestsPerSecond = 10
+
+    async throttle<T>(fn: () => Promise<T>): Promise<T> {
+      return new Promise((resolve, reject) => {
+        this.queue.push(async () => {
+          try {
+            const result = await fn()
+            resolve(result)
+          } catch (error) {
+            reject(error)
+          }
+        })
+
+        if (!this.processing) {
+          this.processQueue()
+        }
+      })
+    }
+
+    private async processQueue() {
+      this.processing = true
+
+      while (this.queue.length > 0) {
+        const batch = this.queue.splice(0, this.requestsPerSecond)
+        await Promise.all(batch.map(fn => fn()))
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      }
+
+      this.processing = false
+    }
+  }
+
+  Issue 4: No Exponential Backoff
+
+  Current Problem: Fixed retry intervals waste resources
+
+  Refinement:
+  // utils/retryWithBackoff.ts
+  async function retryWithBackoff<T>(
+    fn: () => Promise<T>,
+    maxRetries = 3,
+    baseDelay = 1000
+  ): Promise<T> {
+    let lastError: any
+
+    for (let i = 0; i < maxRetries; i++) {
+      try {
+        return await fn()
+      } catch (error) {
+        lastError = error
+
+        // Don't retry on client errors (4xx)
+        if (error.status >= 400 && error.status < 500) {
+          throw error
+        }
+
+        // Exponential backoff with jitter
+        const delay = baseDelay * Math.pow(2, i) + Math.random() * 1000
+        await new Promise(resolve => setTimeout(resolve, delay))
+      }
+    }
+
+    throw lastError
+  }
+
+  Issue 5: Missing Metrics/Monitoring
+
+  Current Problem: No visibility into API performance
+
+  Refinement:
+  // services/api/metrics.service.ts
+  class APIMetrics {
+    private metrics: Map<string, any[]> = new Map()
+
+    recordAPICall(
+      endpoint: string,
+      duration: number,
+      success: boolean,
+      offline: boolean
+    ) {
+      const key = `${endpoint}-${success ? 'success' : 'failure'}`
+      const current = this.metrics.get(key) || []
+
+      current.push({
+        duration,
+        timestamp: Date.now(),
+        offline,
+      })
+
+      this.metrics.set(key, current)
+
+      // Send to analytics if online
+      if (!offline) {
+        analytics.track('api_call', {
+          endpoint,
+          duration,
+          success,
+        })
+      }
+    }
+
+    getMetrics(endpoint: string) {
+      const success = this.metrics.get(`${endpoint}-success`) || []
+      const failure = this.metrics.get(`${endpoint}-failure`) || []
+
+      return {
+        totalCalls: success.length + failure.length,
+        successRate: success.length / (success.length + failure.length),
+        avgDuration: success.reduce((a, b) => a + b.duration, 0) / success.length,
+        p95Duration: this.percentile(success.map(s => s.duration), 0.95),
+      }
+    }
+
+    private percentile(arr: number[], p: number) {
+      const sorted = arr.sort((a, b) => a - b)
+      const index = Math.ceil(sorted.length * p) - 1
+      return sorted[index]
+    }
+  }
+
+  Final Refined Architecture
+
+  // services/api/enhanced-base.service.ts
+  export abstract class EnhancedAPIService extends BaseAPIService {
+    protected deduplicator = new RequestDeduplicator()
+    protected rateLimiter = new RateLimiter()
+    protected metrics = new APIMetrics()
+    protected conflictResolver = new ConflictResolver()
+
+    protected async executeWithMetrics<T>(
+      operation: string,
+      fn: () => Promise<T>
+    ): Promise<T> {
+      const start = Date.now()
+      const online = await this.isOnline()
+
+      try {
+        const result = await retryWithBackoff(() =>
+          this.rateLimiter.throttle(() =>
+            this.deduplicator.deduplicate(operation, fn)
+          )
+        )
+
+        this.metrics.recordAPICall(
+          operation,
+          Date.now() - start,
+          true,
+          !online
+        )
+
+        return result
+      } catch (error) {
+        this.metrics.recordAPICall(
+          operation,
+          Date.now() - start,
+          false,
+          !online
+        )
+        throw error
+      }
+    }
+  }
+
+  ---
+  The API Integration section has been thoroughly analyzed and refined. The architecture now includes:
+
+  ✅ Conflict resolution
+  ✅ Request deduplication✅ Rate limiting
+  ✅ Exponential backoff
+  ✅ Metrics and monitoring
+  ✅ Better error handling
+
+  Would you like to:
+
+  1. Proceed to next section - Continue with Routing
+  2. Implement the refinements - Add refined code to main section
+  3. Explore specific refinement - Deep dive into any improvement
+  4. Review API testing strategies - How to test this architecture
+
+  Select 1-4 or type your feedback

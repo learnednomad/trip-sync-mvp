@@ -1,0 +1,115 @@
+appId: com.sabron.tripsync
+---
+
+# Epic 5: Expense Tracking E2E Test
+# Tests adding expenses, listing, and balance calculations
+
+# Prerequisite: User logged in with trip and members
+- runFlow:
+    file: ../helpers/login-test-user.yaml
+- runFlow:
+    file: ../helpers/create-trip-with-members.yaml
+
+# Navigate to trip
+- tapOn: "Trips"
+- tapOn: "Test Trip with Friends"
+- assertVisible: "Members (3)" # User + 2 friends
+
+# Test 5.1: Add Expense
+- tapOn: "View Expenses"
+- assertVisible: "No expenses yet"
+- tapOn: "Add Expense"
+
+# Fill expense form
+- assertVisible: "Add Expense"
+- tapOn:
+    id: "amount-input"
+- inputText: "120.00"
+
+- tapOn:
+    id: "description-input"
+- inputText: "Dinner at restaurant"
+
+# Select payer
+- tapOn: "Paid by"
+- tapOn: "Test User"
+
+# Select participants (all selected by default)
+- assertVisible: "Split between (3)"
+- assertVisible: "Test User - $40.00"
+- assertVisible: "Friend 1 - $40.00"
+- assertVisible: "Friend 2 - $40.00"
+
+# Unselect one person
+- tapOn: "Friend 2"
+- assertVisible: "Test User - $60.00" # Recalculated
+- assertVisible: "Friend 1 - $60.00"
+
+# Save expense
+- tapOn: "Save Expense"
+- assertVisible: "Expense saved!"
+
+# Test 5.2: List Expenses
+- assertVisible: "Today"
+- assertVisible: "Dinner at restaurant"
+- assertVisible: "$120.00 • Paid by You"
+- assertVisible: "Your share: $60.00"
+
+# Add another expense
+- tapOn: "Add Expense"
+- tapOn:
+    id: "amount-input"
+- inputText: "45.00"
+- tapOn:
+    id: "description-input"
+- inputText: "Taxi to hotel"
+
+# Different payer this time
+- tapOn: "Paid by"
+- tapOn: "Friend 1"
+
+# All participants
+- tapOn: "Save Expense"
+
+# Should see both expenses
+- assertVisible: "Taxi to hotel"
+- assertVisible: "$45.00 • Paid by Friend 1"
+- assertVisible: "Your share: $15.00"
+
+# Test 5.3: Balance Summary
+- back # To trip details
+- assertVisible: "Balance Summary"
+
+# Check totals
+- assertVisible: "Total Trip Spending: $165"
+- assertVisible: "Test User: Paid $120"
+- assertVisible: "Friend 1: Paid $45"
+- assertVisible: "Friend 2: Paid $0"
+
+# Check balances
+- assertVisible: "Test User: +$45" # Paid 120, owes 75
+- assertVisible: "Friend 1: -$30"  # Paid 45, owes 75
+- assertVisible: "Friend 2: -$15"  # Paid 0, owes 15
+
+# Check settlement suggestions
+- assertVisible: "To Settle:"
+- assertVisible: "Friend 1 → Test User: $30"
+- assertVisible: "Friend 2 → Test User: $15"
+
+# Test expense deletion
+- tapOn: "View Expenses"
+- swipeLeft:
+    text: "Taxi to hotel"
+- tapOn: "Delete"
+- assertVisible: "Delete expense?"
+- tapOn: "Confirm"
+
+# Balance should update
+- back
+- assertVisible: "Total Trip Spending: $120"
+- assertVisible: "Test User: +$60"
+- assertVisible: "Friend 1: -$40"
+- assertVisible: "Friend 2: -$20"
+
+# Success - Expense tracking complete
+- takeScreenshot: "epic-5-complete"

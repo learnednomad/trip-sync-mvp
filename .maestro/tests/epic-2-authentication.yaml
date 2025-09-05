@@ -1,0 +1,99 @@
+appId: com.sabron.tripsync
+---
+
+# Epic 2: Authentication E2E Test
+# Tests signup, signin, Apple Sign In, and profile management
+
+- launchApp:
+    clearState: true
+
+# Test 2.1: Email Authentication - Sign Up
+- assertVisible: "Sign In"
+- tapOn: "Create Account"
+- assertVisible: "Sign Up"
+
+# Fill signup form
+- tapOn:
+    id: "email-input"
+- inputText: "test${TIMESTAMP}@example.com"
+- tapOn:
+    id: "password-input"
+- inputText: "Test123456!"
+
+# Submit signup
+- tapOn: "Sign Up"
+- assertVisible: "Verify your email"
+- takeScreenshot: "signup-success"
+
+# Test 2.1: Sign In with existing account
+- tapOn: "Back to Sign In"
+- clearText:
+    id: "email-input"
+- tapOn:
+    id: "email-input"
+- inputText: "existing@example.com"
+- clearText:
+    id: "password-input"
+- tapOn:
+    id: "password-input"  
+- inputText: "Test123456!"
+
+# Test validation
+- tapOn: "Sign In"
+- assertVisible: 
+    text: "Invalid credentials"
+    
+# Use correct password
+- clearText:
+    id: "password-input"
+- tapOn:
+    id: "password-input"
+- inputText: "CorrectPassword123!"
+- tapOn: "Sign In"
+
+# Should be logged in now
+- assertVisible: "Home"
+- assertVisible: "Welcome"
+
+# Test 2.2: Apple Sign In (iOS only)
+- runFlow:
+    when:
+        platform: iOS
+    file: apple-signin-flow.yaml
+
+# Test 2.3: Session Management
+# Kill and restart app
+- stopApp
+- launchApp
+
+# Should still be logged in
+- assertVisible: "Home"
+- assertNotVisible: "Sign In"
+
+# Test 2.4: Profile Screen
+- tapOn: "Settings"
+- tapOn: "Profile"
+- assertVisible: "existing@example.com"
+- assertVisible:
+    id: "name-input"
+
+# Update name
+- clearText:
+    id: "name-input"
+- tapOn:
+    id: "name-input"
+- inputText: "Test User Updated"
+- tapOn: "Save"
+- assertVisible: "Profile updated!"
+
+# Test logout
+- tapOn: "Logout"
+- assertVisible: "Are you sure?"
+- tapOn: "Confirm"
+
+# Should be back at signin
+- assertVisible: "Sign In"
+- assertNotVisible: "Home"
+
+# Success - Authentication complete
+- takeScreenshot: "epic-2-complete"

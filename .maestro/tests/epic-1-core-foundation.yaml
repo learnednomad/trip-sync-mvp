@@ -1,0 +1,63 @@
+appId: com.sabron.tripsync
+---
+
+# Epic 1: Core Foundation E2E Test
+# Tests theme switching, navigation, and basic UI components
+
+- launchApp:
+    clearState: true
+
+# Test 1.1: Theme System
+- assertVisible: 
+    text: "Trip Sync"
+    
+# Navigate to settings to test theme
+- tapOn: "Settings"
+- assertVisible: "Settings"
+
+# Test theme toggle
+- tapOn: "Theme"
+- tapOn: "Dark"
+- takeScreenshot: "dark-theme"
+- tapOn: "Light"
+- takeScreenshot: "light-theme"
+
+# Test 1.3: Navigation
+# Verify all tabs are present and functional
+- tapOn: "Home"
+- assertVisible: "Welcome"
+
+- tapOn: "Trips"
+- assertVisible: "My Trips"
+
+- tapOn: "Explore"
+- assertVisible: "Explore"
+
+- tapOn: "Settings"
+- assertVisible: "Settings"
+
+# Test 1.2: UI Components
+# Test error state
+- tapOn: "Trips"
+- runScript:
+    file: ../../scripts/simulate-network-error.js
+- assertVisible: "Something went wrong"
+- assertVisible: "Retry"
+
+# Test loading state
+- tapOn: "Retry"
+- assertVisible: # Loading spinner
+    id: "loading-spinner"
+
+# Test cards and buttons work
+- waitForAnimationToEnd
+- assertVisible: "Create Trip" # Button component
+- tapOn: "Create Trip"
+- assertVisible: "Trip Name" # TextInput component
+
+# Verify modal works
+- tapOn: "Cancel"
+- assertNotVisible: "Trip Name"
+
+# Success - Core UI components functional
+- takeScreenshot: "epic-1-complete"

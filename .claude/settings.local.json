@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm run:*)",
+      "mcp__exa__web_search_exa",
+      "mcp__filesystem__read_file",
+      "mcp__filesystem__create_directory",
+      "mcp__filesystem__write_file",
+      "Bash(mkdir:*)",
+      "Bash(npm test:*)",
+      "Bash(grep:*)",
+      "Bash(mv:*)",
+      "Bash(ls:*)",
+      "Bash(rm:*)",
+      "mcp__mcp-server-firecrawl__firecrawl_scrape",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

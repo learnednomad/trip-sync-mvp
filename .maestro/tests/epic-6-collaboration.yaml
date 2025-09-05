@@ -1,0 +1,186 @@
+appId: com.sabron.tripsync
+---
+
+# Epic 6: Basic Collaboration E2E Test
+# Tests real-time updates between multiple users
+
+# This test requires two devices/simulators running simultaneously
+# Device 1: Main user
+# Device 2: Friend user
+
+# DEVICE 1: Setup
+- launchApp:
+    clearState: true
+    device: "Device1"
+
+- runFlow:
+    file: ../helpers/login-test-user.yaml
+    env:
+        DEVICE: "Device1"
+
+- runFlow:
+    file: ../helpers/create-trip-for-collaboration.yaml
+    env:
+        DEVICE: "Device1"
+
+# Get invite code
+- tapOn: "Trips"
+- tapOn: "Collaboration Test Trip"
+- assertVisible: "Invite Code:"
+- runScript:
+    file: ../../scripts/copy-invite-code.js
+    env:
+        DEVICE: "Device1"
+
+# DEVICE 2: Join trip
+- launchApp:
+    clearState: true
+    device: "Device2"
+
+- runFlow:
+    file: ../helpers/login-friend-user.yaml
+    env:
+        DEVICE: "Device2"
+
+- tapOn: 
+    text: "Trips"
+    device: "Device2"
+- tapOn:
+    text: "Join Trip"
+    device: "Device2"
+    
+- tapOn:
+    id: "invite-code-input"
+    device: "Device2"
+- inputText: 
+    text: "${INVITE_CODE}"
+    device: "Device2"
+    
+- tapOn:
+    text: "Join"
+    device: "Device2"
+
+# Test 6.1: Real-time Updates - Member Join
+# DEVICE 1: Should see new member
+- assertVisible:
+    text: "Friend User joined the trip"
+    device: "Device1"
+    
+- assertVisible:
+    text: "Members (2)"
+    device: "Device1"
+
+# DEVICE 2: Add expense
+- tapOn:
+    text: "View Expenses"
+    device: "Device2"
+    
+- tapOn:
+    text: "Add Expense"
+    device: "Device2"
+
+- tapOn:
+    id: "amount-input"
+    device: "Device2"
+- inputText:
+    text: "80.00"
+    device: "Device2"
+
+- tapOn:
+    id: "description-input"
+    device: "Device2"
+- inputText:
+    text: "Gas for trip"
+    device: "Device2"
+
+- tapOn:
+    text: "Save Expense"
+    device: "Device2"
+
+# DEVICE 1: Should see expense immediately
+- tapOn:
+    text: "View Expenses"
+    device: "Device1"
+
+- assertVisible:
+    text: "New expense: Gas for trip ($80)"
+    device: "Device1"
+
+- assertVisible:
+    text: "Gas for trip"
+    device: "Device1"
+    
+- assertVisible:
+    text: "$80.00 • Paid by Friend User"
+    device: "Device1"
+
+# Test balance updates
+- back:
+    device: "Device1"
+    
+- assertVisible:
+    text: "Total Trip Spending: $80"
+    device: "Device1"
+
+# DEVICE 1: Add expense
+- tapOn:
+    text: "View Expenses"
+    device: "Device1"
+    
+- tapOn:
+    text: "Add Expense"
+    device: "Device1"
+
+- tapOn:
+    id: "amount-input"
+    device: "Device1"
+- inputText:
+    text: "150.00"
+    device: "Device1"
+
+- tapOn:
+    id: "description-input"
+    device: "Device1"
+- inputText:
+    text: "Hotel booking"
+    device: "Device1"
+
+- tapOn:
+    text: "Save Expense"
+    device: "Device1"
+
+# DEVICE 2: Should see update
+- assertVisible:
+    text: "New expense: Hotel booking ($150)"
+    device: "Device2"
+
+# Both should see updated totals
+- back:
+    device: "Device2"
+    
+- assertVisible:
+    text: "Total Trip Spending: $230"
+    device: "Device1"
+    
+- assertVisible:
+    text: "Total Trip Spending: $230"
+    device: "Device2"
+
+# Test member leave
+- tapOn:
+    text: "Leave Trip"
+    device: "Device2"
+    
+- tapOn:
+    text: "Confirm"
+    device: "Device2"
+
+# DEVICE 1: Should see member left
+- assertVisible:
+    text: "Members (1)"
+    device: "Device1"
+
+# Success - Collaboration complete
+- takeScreenshot: 
+    name: "epic-6-complete"
+    device: "Device1"

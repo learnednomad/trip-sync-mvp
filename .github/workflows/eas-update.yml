@@ -1,0 +1,74 @@
+name: EAS Update
+
+on:
+  push:
+    branches: [develop, staging]
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Update message'
+        required: false
+        default: 'Pushing OTA update'
+
+jobs:
+  update:
+    name: EAS Update
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Determine update channel
+        id: channel
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
+            echo "channel=development" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            echo "channel=staging" >> $GITHUB_OUTPUT
+          else
+            echo "channel=preview" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create update
+        run: |
+          eas update --branch ${{ steps.channel.outputs.channel }} \
+            --message "${{ github.event.inputs.message || 'OTA Update' }}" \
+            --non-interactive
+        env:
+          EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          EXPO_PUBLIC_SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          EXPO_PUBLIC_API_URL: ${{ secrets.API_URL_STAGING }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const channel = '${{ steps.channel.outputs.channel }}';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✨ **EAS Update Published!**\n\nChannel: ${channel}\nMessage: ${{ github.event.inputs.message || 'OTA Update' }}\n\nThe update will be available to users shortly.`
+            })

@@ -1,0 +1,97 @@
+appId: com.sabron.tripsync
+---
+
+# Epic 4: Offline & Sync E2E Test
+# Tests offline detection, caching, and sync queue
+
+# Prerequisite: User logged in with trips
+- runFlow:
+    file: ../helpers/login-test-user.yaml
+- runFlow:
+    file: ../helpers/create-test-trip.yaml
+
+# Test 4.1: Offline Detection
+# Go to trips (data should be cached)
+- tapOn: "Trips"
+- assertVisible: "Test Trip"
+
+# Turn on airplane mode
+- toggleAirplaneMode
+
+# Should show offline banner
+- assertVisible: "You're offline"
+- takeScreenshot: "offline-indicator"
+
+# Test 4.2: Local Storage
+# Should still see cached data
+- assertVisible: "Test Trip"
+- tapOn: "Test Trip"
+- assertVisible: "Invite Code:"
+
+# Navigate around - should work offline
+- back
+- tapOn: "Home"
+- assertVisible: "Welcome"
+- tapOn: "Settings"
+- assertVisible: "Settings"
+
+# Test 4.3: Offline Queue
+# Try to create expense while offline
+- tapOn: "Trips"
+- tapOn: "Test Trip"
+- tapOn: "View Expenses"
+- tapOn: "Add Expense"
+
+# Fill expense form
+- tapOn:
+    id: "amount-input"
+- inputText: "50.00"
+- tapOn:
+    id: "description-input"
+- inputText: "Offline lunch expense"
+
+# Select payer
+- tapOn: "Paid by"
+- tapOn: "Test User"
+
+# Save (should queue)
+- tapOn: "Save Expense"
+- assertVisible: "Expense saved" # Optimistic update
+
+# Should see expense in list (from cache)
+- assertVisible: "Offline lunch expense"
+- assertVisible: "$50.00"
+
+# Turn off airplane mode
+- toggleAirplaneMode
+
+# Wait for sync
+- assertVisible: "Syncing..."
+- waitForAnimationToEnd
+- assertNotVisible: "Syncing..."
+- assertNotVisible: "You're offline"
+
+# Verify expense synced
+- scroll:
+    direction: DOWN
+    distance: 30%
+- waitForAnimationToEnd
+- assertVisible: "Offline lunch expense"
+
+# Test 4.2: Cache expiry
+# (Would need to mock time passage)
+# For now just verify data persists
+
+# Kill and restart app
+- stopApp
+- launchApp
+
+# Navigate to trip - should load from cache initially
+- tapOn: "Trips"
+- assertVisible: "Test Trip" # Loaded from cache
+- tapOn: "Test Trip"
+- tapOn: "View Expenses"
+- assertVisible: "Offline lunch expense" # Still there
+
+# Success - Offline functionality complete
+- takeScreenshot: "epic-4-complete"

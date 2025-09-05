@@ -1,0 +1,107 @@
+appId: com.sabron.tripsync
+---
+
+# Epic 3: Trip Management E2E Test
+# Tests trip creation, joining, listing, and details
+
+# Prerequisite: User logged in
+- runFlow:
+    file: ../helpers/login-test-user.yaml
+
+# Test 3.1: Create Trip
+- tapOn: "Trips"
+- assertVisible: "My Trips"
+
+# Empty state
+- assertVisible: "No trips yet"
+- tapOn: "Create Trip"
+
+# Fill trip form
+- assertVisible: "Create Trip"
+- tapOn:
+    id: "trip-name-input"
+- inputText: "Weekend in Vegas"
+
+# Add dates (optional)
+- tapOn: "Start Date"
+- tapOn: "15" # Select date
+- tapOn: "OK"
+
+- tapOn: "End Date"
+- tapOn: "17" # Select date  
+- tapOn: "OK"
+
+# Save trip
+- tapOn: "Create Trip"
+- assertVisible: "Trip created!"
+
+# Test 3.4: Trip Details
+- assertVisible: "Weekend in Vegas"
+- assertVisible: "Invite Code:"
+- assertVisible: # 6 character code
+    text: "^[A-Z0-9]{6}$"
+
+# Copy invite code
+- tapOn:
+    id: "copy-invite-button"
+- assertVisible: "Copied to clipboard"
+
+# Check members
+- assertVisible: "Members (1)"
+- assertVisible: "Test User (Owner)"
+
+# Test 3.2: List Trips
+- back
+- assertVisible: "My Trips"
+- assertNotVisible: "No trips yet"
+- assertVisible: "Weekend in Vegas"
+- assertVisible: "1" # Member count
+
+# Test 3.3: Join Trip
+- tapOn: "Join Trip"
+- assertVisible: "Enter Invite Code"
+
+# Test validation
+- tapOn:
+    id: "invite-code-input"
+- inputText: "ABC" # Too short
+- tapOn: "Join"
+- assertVisible: "Invalid code format"
+
+# Valid code (but non-existent)
+- clearText:
+    id: "invite-code-input"
+- inputText: "ABC123"
+- tapOn: "Join"
+- assertVisible: "Trip not found"
+
+# Close modal
+- tapOn: "Cancel"
+
+# Create another trip to test navigation
+- tapOn: "Create Trip"
+- tapOn:
+    id: "trip-name-input"
+- inputText: "Summer Road Trip"
+- tapOn: "Create Trip"
+
+# Back to list
+- back
+- assertVisible: "Weekend in Vegas"
+- assertVisible: "Summer Road Trip"
+
+# Pull to refresh
+- scroll:
+    direction: DOWN
+    distance: 50%
+- waitForAnimationToEnd
+
+# Tap on trip
+- tapOn: "Weekend in Vegas"
+- assertVisible: "Feb 15-17"
+
+# Test leave trip (would only show for non-owners)
+- assertNotVisible: "Leave Trip"
+
+# Success - Trip management complete
+- takeScreenshot: "epic-3-complete"

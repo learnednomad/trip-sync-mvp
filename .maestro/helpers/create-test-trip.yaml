@@ -1,0 +1,11 @@
+# Helper: Create Test Trip
+# Creates a basic trip for testing
+
+- tapOn: "Trips"
+- tapOn: "Create Trip"
+- tapOn:
+    id: "trip-name-input"
+- inputText: "Test Trip"
+- tapOn: "Create Trip"
+- assertVisible: "Trip created!"
+- back

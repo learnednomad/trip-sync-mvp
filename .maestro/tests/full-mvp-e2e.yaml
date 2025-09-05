@@ -1,0 +1,68 @@
+appId: com.sabron.tripsync
+---
+
+# Full MVP E2E Test Suite
+# Runs all epic tests in sequence
+
+# Epic 1: Core Foundation
+- runFlow:
+    file: epic-1-core-foundation.yaml
+
+# Epic 2: Authentication  
+- runFlow:
+    file: epic-2-authentication.yaml
+
+# Epic 3: Trip Management
+- runFlow:
+    file: epic-3-trip-management.yaml
+
+# Epic 4: Offline & Sync
+- runFlow:
+    file: epic-4-offline-sync.yaml
+
+# Epic 5: Expense Tracking
+- runFlow:
+    file: epic-5-expense-tracking.yaml
+
+# Epic 6: Basic Collaboration (requires 2 devices)
+- runFlow:
+    when:
+        condition: "${ENABLE_COLLABORATION_TEST}" == "true"
+    file: epic-6-collaboration.yaml
+
+# Epic 7 & 8 are not user-facing features to test
+
+# Final smoke test - critical user journey
+- launchApp
+- runFlow:
+    file: ../helpers/login-test-user.yaml
+
+# Create trip
+- tapOn: "Trips"
+- tapOn: "Create Trip"
+- tapOn:
+    id: "trip-name-input"
+- inputText: "Final Test Trip"
+- tapOn: "Create Trip"
+
+# Add expense
+- tapOn: "View Expenses"
+- tapOn: "Add Expense"
+- tapOn:
+    id: "amount-input"
+- inputText: "100.00"
+- tapOn:
+    id: "description-input"
+- inputText: "Final test expense"
+- tapOn: "Save Expense"
+
+# Check balance
+- back
+- assertVisible: "Total Trip Spending: $100"
+
+# Test complete!
+- takeScreenshot: "mvp-test-complete"
+
+# Generate test report
+- runScript:
+    file: ../../scripts/generate-test-report.js
