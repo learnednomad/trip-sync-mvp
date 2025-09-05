@@ -1,4 +1,4 @@
-import { Tabs } from 'expo-router';
+import { Tabs, Redirect } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 import {
@@ -7,10 +7,22 @@ import {
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { useSupabaseAuth } from '@/lib/auth/supabase-auth';
+
+export const unstable_settings = {
+  initialRouteName: 'home',
+};
 
 export default function TabLayout() {
   const primaryColor = useThemeColor({}, 'primary');
   const textColor = useThemeColor({}, 'text');
+  const isAuthenticated = useSupabaseAuth.use.isAuthenticated();
+  const isLoading = useSupabaseAuth.use.isLoading();
+
+  // Protected route: Redirect to auth if not authenticated
+  if (!isLoading && !isAuthenticated) {
+    return <Redirect href="/(auth)/sign-in" />;
+  }
 
   return (
     <Tabs
@@ -27,6 +39,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
+          lazy: true, // Enable lazy loading
         }}
       />
 
@@ -37,6 +50,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="card-travel" size={size} color={color} />
           ),
+          lazy: true, // Enable lazy loading
         }}
       />
 
@@ -47,6 +61,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="compass" size={size} color={color} />
           ),
+          lazy: true, // Enable lazy loading
         }}
       />
 
@@ -57,6 +72,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings" size={size} color={color} />
           ),
+          lazy: true, // Enable lazy loading
         }}
       />
     </Tabs>

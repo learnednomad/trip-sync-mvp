@@ -21,7 +21,7 @@ import { ThemeProvider } from '@/theme/ThemeContext';
 export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(tabs)',
+  initialRouteName: 'index',
 };
 
 loadSelectedTheme();
@@ -34,10 +34,18 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  const [isReady, setIsReady] = React.useState(false);
+
   React.useEffect(() => {
     // Initialize auth when app starts
-    initializeAuth();
+    initializeAuth().finally(() => {
+      setIsReady(true);
+    });
   }, []);
+
+  if (!isReady) {
+    return null; // Splash screen will remain visible
+  }
 
   return (
     <Providers>
@@ -51,25 +59,47 @@ function RootLayoutNav() {
   const router = useRouter();
   const isAuthenticated = useSupabaseAuth.use.isAuthenticated();
   const isLoading = useSupabaseAuth.use.isLoading();
+  const [isNavigationReady, setIsNavigationReady] = React.useState(false);
 
   useEffect(() => {
     if (isLoading) return;
 
+    // Handle hot reload or empty segments scenario
+    if (!segments || segments.length === 0) {
+      // Default navigation based on auth state
+      if (isAuthenticated) {
+        router.replace('/(tabs)/home');
+      } else {
+        router.replace('/(auth)/sign-in');
+      }
+      
+      // Mark navigation as ready
+      if (!isNavigationReady) {
+        setIsNavigationReady(true);
+        SplashScreen.hideAsync();
+      }
+      return;
+    }
+
     const inAuthGroup = segments[0] === '(auth)';
+    const inTabsGroup = segments[0] === '(tabs)';
 
     if (!isAuthenticated && !inAuthGroup) {
       // Redirect to sign in if not authenticated
       router.replace('/(auth)/sign-in');
     } else if (isAuthenticated && inAuthGroup) {
       // Redirect to home if authenticated and in auth screens
-      router.replace('/(tabs)');
+      router.replace('/(tabs)/home');
     }
 
-    // Hide splash screen once we know auth state
-    SplashScreen.hideAsync();
-  }, [isAuthenticated, segments, isLoading, router]);
+    // Mark navigation as ready and hide splash screen
+    if (!isNavigationReady) {
+      setIsNavigationReady(true);
+      SplashScreen.hideAsync();
+    }
+  }, [isAuthenticated, segments, isLoading, router, isNavigationReady]);
 
-  if (isLoading) {
+  if (isLoading || !isNavigationReady) {
     // Show loading indicator while checking auth
     return (
       <View style={styles.loadingContainer}>
@@ -79,9 +109,38 @@ function RootLayoutNav() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="(auth)" />
+    <Stack 
+      screenOptions={{ 
+        headerShown: false,
+        animation: 'slide_from_right' // Better navigation animation
+      }}
+    >
+      <Stack.Screen 
+        name="index"
+        options={{
+          // Hide the index route from navigation
+          animation: 'none',
+        }}
+      />
+      <Stack.Screen 
+        name="(tabs)" 
+        options={{
+          gestureEnabled: false // Prevent swipe back to auth
+        }}
+      />
+      <Stack.Screen 
+        name="(auth)" 
+        options={{
+          gestureEnabled: false // Prevent swipe in auth screens
+        }}
+      />
+      <Stack.Screen
+        name="(modals)"
+        options={{
+          presentation: 'modal',
+          gestureEnabled: true,
+        }}
+      />
     </Stack>
   );
 }

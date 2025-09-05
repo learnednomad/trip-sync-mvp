@@ -1,8 +1,7 @@
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import * as React from 'react';
-
-export const queryClient = new QueryClient();
+import { queryClient } from '@/lib/query-client';
 
 export function APIProvider({ children }: { children: React.ReactNode }) {
   // Guard devtools initialization to avoid crashing in edge environments

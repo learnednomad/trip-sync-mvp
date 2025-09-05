@@ -1,5 +1,5 @@
-import '@testing-library/jest-native/extend-expect'
-import 'react-native-gesture-handler/jestSetup'
+// import '@testing-library/jest-native/extend-expect'
+// import 'react-native-gesture-handler/jestSetup'
 
 // react-hook form setup for testing
 // @ts-ignore
@@ -85,7 +85,7 @@ jest.mock('expo-router', () => ({
 
 // Mock React Native
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter')
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
+// jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
 // Mock Safe Area Context
 jest.mock('react-native-safe-area-context', () => {

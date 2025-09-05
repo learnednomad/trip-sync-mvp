@@ -1,9 +1,22 @@
-import { Stack } from 'expo-router';
+import { Stack, Redirect } from 'expo-router';
 import React from 'react';
 import { useTheme } from '@/theme/ThemeContext';
+import { useSupabaseAuth } from '@/lib/auth/supabase-auth';
+
+export const unstable_settings = {
+  initialRouteName: 'sign-in',
+};
 
 export default function AuthLayout() {
   const { theme } = useTheme();
+  const isAuthenticated = useSupabaseAuth.use.isAuthenticated();
+  const isLoading = useSupabaseAuth.use.isLoading();
+
+  // Redirect to tabs if already authenticated
+  // This prevents authenticated users from accessing auth screens
+  if (!isLoading && isAuthenticated) {
+    return <Redirect href="/(tabs)/home" />;
+  }
 
   return (
     <Stack
