@@ -17,7 +17,7 @@ export default function SignUpScreen() {
   const { theme } = useTheme();
   const signUp = useSupabaseAuth.use.signUp();
   const isLoading = useSupabaseAuth.use.isLoading();
-  
+
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,29 +31,29 @@ export default function SignUpScreen() {
 
   const validateForm = () => {
     const newErrors: typeof errors = {};
-    
+
     if (!fullName.trim()) {
       newErrors.fullName = 'Full name is required';
     }
-    
+
     if (!email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!password) {
       newErrors.password = 'Password is required';
     } else if (password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
+
     if (!confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
     } else if (password !== confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -63,7 +63,7 @@ export default function SignUpScreen() {
 
     try {
       await signUp(email, password, fullName);
-      
+
       // Show success message and redirect to sign in
       Alert.alert(
         'Check Your Email',
@@ -194,7 +194,13 @@ export default function SignUpScreen() {
                 label="Create Account"
                 onPress={handleSignUp}
                 loading={isLoading}
-                disabled={isLoading || !email || !password || !fullName || !confirmPassword}
+                disabled={
+                  isLoading ||
+                  !email ||
+                  !password ||
+                  !fullName ||
+                  !confirmPassword
+                }
                 fullWidth
                 variant="primary"
               />
@@ -202,12 +208,15 @@ export default function SignUpScreen() {
 
             {/* Terms Text */}
             <Text className="text-xs text-center mt-4 opacity-60 px-8">
-              By creating an account, you agree to our Terms of Service and Privacy Policy
+              By creating an account, you agree to our Terms of Service and
+              Privacy Policy
             </Text>
 
             {/* Sign In Link */}
             <View className="mt-6 flex-row justify-center items-center">
-              <Text className="text-sm opacity-60">Already have an account? </Text>
+              <Text className="text-sm opacity-60">
+                Already have an account?{' '}
+              </Text>
               <PlatformButton
                 label="Sign In"
                 variant="text"

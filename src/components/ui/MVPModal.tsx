@@ -6,7 +6,7 @@
 import React from 'react';
 import { Modal as RNModal, View, Pressable } from 'react-native';
 import type { ModalProps as RNModalProps } from 'react-native';
-import { useTheme } from '@/theme/mvp';
+import { useTheme } from '@/theme/ThemeContext';
 
 interface MVPModalProps extends Omit<RNModalProps, 'transparent' | 'animationType'> {
   visible: boolean;

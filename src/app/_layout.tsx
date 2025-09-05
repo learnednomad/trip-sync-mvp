@@ -21,7 +21,7 @@ import { ThemeProvider } from '@/theme/ThemeContext';
 export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(app)',
+  initialRouteName: '(tabs)',
 };
 
 loadSelectedTheme();
@@ -56,15 +56,15 @@ function RootLayoutNav() {
     if (isLoading) return;
 
     const inAuthGroup = segments[0] === '(auth)';
-    
+
     if (!isAuthenticated && !inAuthGroup) {
       // Redirect to sign in if not authenticated
       router.replace('/(auth)/sign-in');
     } else if (isAuthenticated && inAuthGroup) {
       // Redirect to home if authenticated and in auth screens
-      router.replace('/(app)');
+      router.replace('/(tabs)');
     }
-    
+
     // Hide splash screen once we know auth state
     SplashScreen.hideAsync();
   }, [isAuthenticated, segments, isLoading, router]);
@@ -80,7 +80,7 @@ function RootLayoutNav() {
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(app)" />
+      <Stack.Screen name="(tabs)" />
       <Stack.Screen name="(auth)" />
     </Stack>
   );

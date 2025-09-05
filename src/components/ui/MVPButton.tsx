@@ -6,7 +6,7 @@
 import React from 'react';
 import { Pressable, Text, ActivityIndicator } from 'react-native';
 import type { PressableProps } from 'react-native';
-import { useTheme } from '@/theme/mvp';
+import { useTheme } from '@/theme/ThemeContext';
 
 interface MVPButtonProps extends Omit<PressableProps, 'children'> {
   onPress?: () => void;

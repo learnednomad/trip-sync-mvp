@@ -6,7 +6,7 @@
 import React from 'react';
 import { TextInput as RNTextInput, View, Text } from 'react-native';
 import type { TextInputProps as RNTextInputProps } from 'react-native';
-import { useTheme } from '@/theme/mvp';
+import { useTheme } from '@/theme/ThemeContext';
 
 interface MVPTextInputProps extends RNTextInputProps {
   placeholder?: string;

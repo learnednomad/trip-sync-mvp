@@ -5,16 +5,19 @@
 
 // Re-export existing components from their files
 export { PlatformButton, type PlatformButtonProps } from './PlatformButton';
-export { Input } from './Input';
-export { Text } from './Text';
-export { View } from './View';
-export { ScrollView } from './ScrollView';
-export { SafeAreaView } from './SafeAreaView';
-export { ActivityIndicator } from './ActivityIndicator';
-export { FocusAwareStatusBar } from './FocusAwareStatusBar';
-export { ControlledInput } from './ControlledInput';
-export { colors } from './colors';
-export { showErrorMessage } from './toast';
+export { Input } from './input';
+export { Text } from './text';
+export { type OptionType } from './select';
+export { View } from 'react-native';
+export { ScrollView } from 'react-native';
+export { SafeAreaView } from 'react-native-safe-area-context';
+export { ActivityIndicator } from 'react-native';
+export { StatusBar as FocusAwareStatusBar } from 'expo-status-bar';
+export { Image } from 'react-native';
+export { Pressable } from 'react-native';
+// Note: ControlledInput needs to be implemented separately as a wrapper component
+export { default as colors } from './colors';
+export { showErrorMessage } from './utils';
 
 // MVP Components
 export { Button } from './button';

@@ -6,7 +6,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import type { ActivityIndicatorProps } from 'react-native';
-import { useTheme } from '@/theme/mvp';
+import { useTheme } from '@/theme/ThemeContext';
 
 interface MVPLoadingSpinnerProps extends Omit<ActivityIndicatorProps, 'color' | 'size'> {
   size?: 'small' | 'medium' | 'large';

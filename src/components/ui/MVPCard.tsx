@@ -6,7 +6,7 @@
 import React from 'react';
 import { View, Platform } from 'react-native';
 import type { ViewProps } from 'react-native';
-import { useTheme } from '@/theme/mvp';
+import { useTheme } from '@/theme/ThemeContext';
 
 interface MVPCardProps extends ViewProps {
   children: React.ReactNode;

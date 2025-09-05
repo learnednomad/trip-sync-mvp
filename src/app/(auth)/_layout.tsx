@@ -15,21 +15,21 @@ export default function AuthLayout() {
         animation: 'slide_from_right',
       }}
     >
-      <Stack.Screen 
-        name="sign-in" 
+      <Stack.Screen
+        name="sign-in"
         options={{
           title: 'Sign In',
         }}
       />
-      <Stack.Screen 
-        name="sign-up" 
+      <Stack.Screen
+        name="sign-up"
         options={{
           title: 'Sign Up',
           animation: 'slide_from_bottom',
         }}
       />
-      <Stack.Screen 
-        name="forgot-password" 
+      <Stack.Screen
+        name="forgot-password"
         options={{
           title: 'Forgot Password',
           animation: 'fade',

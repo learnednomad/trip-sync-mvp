@@ -17,19 +17,19 @@ export default function ForgotPasswordScreen() {
   const { theme } = useTheme();
   const resetPassword = useSupabaseAuth.use.resetPassword();
   const isLoading = useSupabaseAuth.use.isLoading();
-  
+
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<{ email?: string }>({});
 
   const validateForm = () => {
     const newErrors: typeof errors = {};
-    
+
     if (!email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -39,7 +39,7 @@ export default function ForgotPasswordScreen() {
 
     try {
       await resetPassword(email);
-      
+
       Alert.alert(
         'Check Your Email',
         'If an account exists with this email, you will receive password reset instructions.',
@@ -91,7 +91,8 @@ export default function ForgotPasswordScreen() {
                 Reset Password
               </Text>
               <Text className="text-base text-center opacity-60">
-                Enter your email and we'll send you instructions to reset your password
+                Enter your email and we'll send you instructions to reset your
+                password
               </Text>
             </View>
 
@@ -133,10 +134,7 @@ export default function ForgotPasswordScreen() {
             {/* Helper Text */}
             <Text className="text-sm text-center mt-6 opacity-60 px-8">
               Remember your password?{' '}
-              <Text 
-                className="underline"
-                onPress={handleBack}
-              >
+              <Text className="underline" onPress={handleBack}>
                 Sign In
               </Text>
             </Text>

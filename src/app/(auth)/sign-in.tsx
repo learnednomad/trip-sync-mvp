@@ -17,26 +17,28 @@ export default function SignInScreen() {
   const { theme } = useTheme();
   const signIn = useSupabaseAuth.use.signIn();
   const isLoading = useSupabaseAuth.use.isLoading();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {}
+  );
 
   const validateForm = () => {
     const newErrors: typeof errors = {};
-    
+
     if (!email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!password) {
       newErrors.password = 'Password is required';
     } else if (password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -152,7 +154,9 @@ export default function SignInScreen() {
 
             {/* Sign Up Link */}
             <View className="mt-6 flex-row justify-center items-center">
-              <Text className="text-sm opacity-60">Don't have an account? </Text>
+              <Text className="text-sm opacity-60">
+                Don't have an account?{' '}
+              </Text>
               <PlatformButton
                 label="Sign Up"
                 variant="text"
