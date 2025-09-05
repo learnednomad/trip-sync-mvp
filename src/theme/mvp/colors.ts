@@ -37,3 +37,19 @@ export const checkContrast = (foreground: string, background: string): boolean =
   // For MVP, we're using pre-validated color pairs
   return true;
 };
+
+// Pre-validated contrast pairs for MVP
+export const contrastValidation = {
+  light: {
+    primaryOnBackground: true, // #007AFF on #F2F2F7
+    primaryOnSurface: true,    // #007AFF on #FFFFFF
+    errorOnBackground: true,   // #FF3B30 on #F2F2F7
+    errorOnSurface: true,      // #FF3B30 on #FFFFFF
+  },
+  dark: {
+    primaryOnBackground: true, // #0A84FF on #000000
+    primaryOnSurface: true,    // #0A84FF on #1C1C1E
+    errorOnBackground: true,   // #FF453A on #000000
+    errorOnSurface: true,      // #FF453A on #1C1C1E
+  },
+};

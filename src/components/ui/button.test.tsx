@@ -1,111 +1,80 @@
-/* eslint-disable max-lines-per-function */
+/**
+ * Button Component Tests
+ * Tests for MVP Button with primary style, loading and disabled states
+ */
+
 import React from 'react';
-import { Text } from 'react-native';
+import { render, fireEvent } from '@testing-library/react-native';
+import { Button } from './Button';
+import { ThemeProvider } from '@/theme/mvp';
 
-import { cleanup, render, screen, setup } from '@/lib/test-utils';
+// Test wrapper with theme
+const renderWithTheme = (ui: React.ReactElement) => {
+  return render(<ThemeProvider>{ui}</ThemeProvider>);
+};
 
-import { Button } from './button';
-
-afterEach(cleanup);
-
-describe('Button component ', () => {
-  it('should render correctly ', () => {
-    render(<Button testID="button" />);
-    expect(screen.getByTestId('button')).toBeOnTheScreen();
+describe('Button Component', () => {
+  it('renders correctly with text', () => {
+    const { getByText } = renderWithTheme(
+      <Button onPress={() => {}}>Click Me</Button>
+    );
+    expect(getByText('Click Me')).toBeTruthy();
   });
-  it('should render correctly if we add explicit child ', () => {
-    render(
-      <Button testID="button">
-        <Text> Custom child </Text>
+
+  it('calls onPress when pressed', () => {
+    const onPress = jest.fn();
+    const { getByText } = renderWithTheme(
+      <Button onPress={onPress}>Click Me</Button>
+    );
+    
+    fireEvent.press(getByText('Click Me'));
+    expect(onPress).toHaveBeenCalledTimes(1);
+  });
+
+  it('shows loading indicator when loading', () => {
+    const { queryByText, getByLabelText } = renderWithTheme(
+      <Button onPress={() => {}} loading>
+        Click Me
       </Button>
     );
-    expect(screen.getByText('Custom child')).toBeOnTheScreen();
+    
+    expect(queryByText('Click Me')).toBeNull();
+    expect(getByLabelText('Loading')).toBeTruthy();
   });
-  it('should render the label correctly', () => {
-    render(<Button testID="button" label="Submit" />);
-    expect(screen.getByTestId('button')).toBeOnTheScreen();
-    expect(screen.getByText('Submit')).toBeOnTheScreen();
-  });
-  it('should render the loading indicator correctly', () => {
-    render(<Button testID="button" loading={true} />);
-    expect(screen.getByTestId('button')).toBeOnTheScreen();
-    expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
-  });
-  it('should call onClick handler when clicked', async () => {
-    const onClick = jest.fn();
-    const { user } = setup(
-      <Button testID="button" label="Click the button" onPress={onClick} />
+
+  it('is disabled when disabled prop is true', () => {
+    const onPress = jest.fn();
+    const { getByText, getByRole } = renderWithTheme(
+      <Button onPress={onPress} disabled>
+        Click Me
+      </Button>
     );
-    expect(screen.getByTestId('button')).toBeOnTheScreen();
-    await user.press(screen.getByTestId('button'));
-    expect(onClick).toHaveBeenCalledTimes(1);
+    
+    const button = getByRole('button');
+    expect(button.props.accessibilityState.disabled).toBe(true);
+    
+    fireEvent.press(getByText('Click Me'));
+    expect(onPress).not.toHaveBeenCalled();
   });
-  it('should be disabled when loading', async () => {
-    const onClick = jest.fn();
-    const { user } = setup(
-      <Button
-        testID="button"
-        loading={true}
-        label="Click the button"
-        onPress={onClick}
-      />
+
+  it('is disabled when loading', () => {
+    const onPress = jest.fn();
+    const { getByRole } = renderWithTheme(
+      <Button onPress={onPress} loading>
+        Click Me
+      </Button>
     );
-    expect(screen.getByTestId('button')).toBeOnTheScreen();
-    expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
-    expect(screen.getByTestId('button')).toBeDisabled();
-    await user.press(screen.getByTestId('button'));
-    expect(onClick).toHaveBeenCalledTimes(0);
+    
+    const button = getByRole('button');
+    expect(button.props.accessibilityState.disabled).toBe(true);
   });
-  it('should be disabled when disabled prop is true', () => {
-    render(<Button testID="button" disabled={true} />);
-    expect(screen.getByTestId('button')).toBeDisabled();
-  });
-  it("shouldn't call onClick when disabled", async () => {
-    const onClick = jest.fn();
-    const { user } = setup(
-      <Button
-        testID="button"
-        label="Click the button"
-        disabled={true}
-        onPress={onClick}
-        variant="secondary"
-      />
+
+  it('applies theme colors', () => {
+    const { getByRole } = renderWithTheme(
+      <Button onPress={() => {}}>Click Me</Button>
     );
-    expect(screen.getByTestId('button')).toBeOnTheScreen();
-    await user.press(screen.getByTestId('button'));
-
-    expect(screen.getByTestId('button')).toBeDisabled();
-
-    expect(onClick).toHaveBeenCalledTimes(0);
-  });
-  it('should apply correct styles based on size prop', () => {
-    render(<Button testID="button" size="lg" />);
-    const button = screen.getByTestId('button');
-    // TODO: should be fixed to use haveStyle instead of comparing the class name
-    const expectedStyle =
-      'font-inter font-semibold text-white dark:text-black text-xl';
-    const receivedStyle =
-      button.props.children[0].props.children.props.className;
-    expect(receivedStyle).toContain(expectedStyle);
-  });
-  it('should apply correct styles for label when variant is secondary', () => {
-    render(<Button testID="button" variant="secondary" label="Submit" />);
-    const button = screen.getByTestId('button');
-
-    const expectedStyle =
-      'font-inter font-semibold text-secondary-600 text-base';
-    const receivedStyle =
-      button.props.children[0].props.children.props.className;
-    expect(receivedStyle).toContain(expectedStyle);
-  });
-  it('should apply correct styles for label when is disabled', () => {
-    render(<Button testID="button" label="Submit" disabled />);
-    const button = screen.getByTestId('button');
-
-    const expectedStyle =
-      'font-inter font-semibold text-base text-neutral-600 dark:text-neutral-600';
-    const receivedStyle =
-      button.props.children[0].props.children.props.className;
-    expect(receivedStyle).toContain(expectedStyle);
+    
+    const button = getByRole('button');
+    expect(button.props.style[0].backgroundColor).toBe('#007AFF'); // Light theme primary
   });
 });

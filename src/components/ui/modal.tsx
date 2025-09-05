@@ -1,28 +1,31 @@
-import React from 'react';
+/**
+ * Modal exports including bottom sheet implementation and hooks
+ */
+
 import {
-  BottomSheetBackdrop,
   BottomSheetModal,
+  BottomSheetBackdrop,
+  type BottomSheetBackdropProps,
   type BottomSheetModalProps,
 } from '@gorhom/bottom-sheet';
+import * as React from 'react';
 
-// Hook to control BottomSheetModal via ref
-export function useModal() {
-  const ref = React.useRef<BottomSheetModal>(null);
-  const present = React.useCallback(() => ref.current?.present(), []);
-  const dismiss = React.useCallback(() => ref.current?.dismiss(), []);
-  return { ref, present, dismiss } as const;
-}
+// Export the MVP Modal for simple cases
+export { MVPModal } from './MVPModal';
+export type { MVPModalProps } from './MVPModal';
 
-// Lightweight wrapper over BottomSheetModal with backdrop
+// Export keyboard-aware scroll view
+export * from './modal-keyboard-aware-scroll-view';
+
+// Export Modal component based on BottomSheetModal
 export const Modal = React.forwardRef<BottomSheetModal, BottomSheetModalProps>(
   ({ children, ...props }, ref) => {
     const renderBackdrop = React.useCallback(
-      (backdropProps) => (
+      (props: BottomSheetBackdropProps) => (
         <BottomSheetBackdrop
-          appearsOnIndex={0}
+          {...props}
           disappearsOnIndex={-1}
-          pressBehavior="close"
-          {...backdropProps}
+          appearsOnIndex={0}
         />
       ),
       []
@@ -32,7 +35,6 @@ export const Modal = React.forwardRef<BottomSheetModal, BottomSheetModalProps>(
       <BottomSheetModal
         ref={ref}
         backdropComponent={renderBackdrop}
-        enablePanDownToClose
         {...props}
       >
         {children}
@@ -42,3 +44,18 @@ export const Modal = React.forwardRef<BottomSheetModal, BottomSheetModalProps>(
 );
 
 Modal.displayName = 'Modal';
+
+// useModal hook
+export function useModal() {
+  const ref = React.useRef<BottomSheetModal>(null);
+
+  const present = React.useCallback(() => {
+    ref.current?.present();
+  }, []);
+
+  const dismiss = React.useCallback(() => {
+    ref.current?.dismiss();
+  }, []);
+
+  return { ref, present, dismiss };
+}
